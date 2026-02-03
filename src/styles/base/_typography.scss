@@ -1,0 +1,256 @@
+// ===========================================
+// 3GS Solution - Typography Styles
+// ===========================================
+
+@use '../utils' as *;
+
+// Import Google Fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+// Headings
+.heading-1 {
+  @include heading-1;
+}
+
+.heading-2 {
+  @include heading-2;
+}
+
+.heading-3 {
+  @include heading-3;
+}
+
+.heading-4 {
+  @include heading-4;
+}
+
+// Body Text
+.body-text {
+  @include body-text;
+}
+
+.body-text-sm {
+  @include small-text;
+}
+
+// Special Text Styles
+.text-gradient {
+  @include gradient-text;
+}
+
+.text-muted {
+  color: $color-grey;
+}
+
+.text-light {
+  color: $color-grey-light;
+}
+
+.text-primary {
+  color: $color-primary;
+}
+
+.text-white {
+  color: $color-secondary;
+}
+
+.text-dark {
+  color: $color-dark;
+}
+
+// Text Alignment
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+// Text Transform
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+// Font Weights
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-normal {
+  font-weight: $font-weight-normal;
+}
+
+.font-medium {
+  font-weight: $font-weight-medium;
+}
+
+.font-semibold {
+  font-weight: $font-weight-semibold;
+}
+
+.font-bold {
+  font-weight: $font-weight-bold;
+}
+
+// Lead Text (for hero sections)
+.lead {
+  font-size: $font-size-lg;
+  line-height: $line-height-relaxed;
+  color: $color-grey;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
+}
+
+// Section Title
+.section-title {
+  @include heading-2;
+  margin-bottom: $spacing-4;
+
+  &--light {
+    color: $color-secondary;
+  }
+}
+
+.section-subtitle {
+  font-size: $font-size-lg;
+  color: $color-grey;
+  max-width: 600px;
+
+  @include md {
+    font-size: $font-size-xl;
+  }
+
+  &--light {
+    color: $color-grey-light;
+  }
+
+  &--center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Label/Badge Text
+.label {
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: $color-primary;
+}
+
+// Quote
+.quote {
+  font-size: $font-size-xl;
+  font-style: italic;
+  line-height: $line-height-relaxed;
+  color: $color-grey;
+  padding-left: $spacing-6;
+  border-left: 4px solid $color-primary;
+
+  @include md {
+    font-size: $font-size-2xl;
+  }
+}
+
+// Highlight
+.highlight {
+  color: $color-primary;
+  font-weight: $font-weight-semibold;
+}
+
+// Link Styles
+.link {
+  color: $color-primary;
+  text-decoration: none;
+  position: relative;
+  transition: color $transition-fast;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $color-primary;
+    transition: width $transition-base;
+  }
+
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+
+  &--light {
+    color: $color-secondary;
+
+    &::after {
+      background-color: $color-secondary;
+    }
+  }
+}
+
+// List Styles
+.list {
+  &--bullet {
+    li {
+      position: relative;
+      padding-left: $spacing-6;
+      margin-bottom: $spacing-3;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.6em;
+        width: 8px;
+        height: 8px;
+        background-color: $color-primary;
+        border-radius: 50%;
+      }
+    }
+  }
+
+  &--check {
+    li {
+      position: relative;
+      padding-left: $spacing-8;
+      margin-bottom: $spacing-3;
+
+      &::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: $color-primary;
+        font-weight: $font-weight-bold;
+      }
+    }
+  }
+}
+
+// Truncate
+.truncate {
+  @include truncate(1);
+
+  &--2 {
+    @include truncate(2);
+  }
+
+  &--3 {
+    @include truncate(3);
+  }
+}

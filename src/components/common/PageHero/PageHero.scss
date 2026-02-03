@@ -1,0 +1,46 @@
+@use '../../../styles/utils' as *;
+
+.page-hero {
+  position: relative;
+  min-height: 50vh;
+  @include flex-center;
+  background-color: $bg-dark;
+  padding: $spacing-32 $spacing-4 $spacing-16;
+  overflow: hidden;
+
+  @include md {
+    min-height: 60vh;
+    padding: $spacing-32 $spacing-8 $spacing-20;
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: $color-grey-light;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: $line-height-relaxed;
+  }
+
+  // Variants
+  &--services {
+    background: linear-gradient(180deg, $bg-dark 0%, $color-dark-light 100%);
+  }
+
+  &--projects {
+    background: linear-gradient(180deg, $color-dark 0%, $bg-dark 100%);
+  }
+}

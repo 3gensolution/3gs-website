@@ -1,0 +1,81 @@
+@use '../../../styles/utils' as *;
+
+.why-us {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-10;
+
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+
+  &__content {
+    @include mobile-only {
+      text-align: center;
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $color-primary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    @include heading-2;
+    color: $color-secondary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-grey-light;
+    line-height: $line-height-relaxed;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    padding: $spacing-4 $spacing-5;
+    background-color: rgba($color-secondary, 0.05);
+    border-radius: $radius-lg;
+    margin-bottom: $spacing-3;
+    transition: all $transition-base;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background-color: rgba($color-primary, 0.1);
+      transform: translateX(8px);
+    }
+
+    &-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    &-text {
+      font-size: $font-size-base;
+      font-weight: $font-weight-medium;
+      color: $color-secondary;
+
+      @include md {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}

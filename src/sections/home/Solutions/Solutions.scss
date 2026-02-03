@@ -1,0 +1,145 @@
+@use '../../../styles/utils' as *;
+
+.solutions {
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-12;
+  }
+
+  &__label {
+    display: inline-block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $color-primary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    @include heading-2;
+    color: $color-secondary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $color-grey-light;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: $line-height-relaxed;
+  }
+
+  &__grid {
+    display: none;
+
+    @include md {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-6;
+    }
+
+    @include lg {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__card {
+    @include card-dark;
+    text-align: center;
+
+    &-icon {
+      display: inline-flex;
+      font-size: 2.5rem;
+      margin-bottom: $spacing-4;
+    }
+
+    &-title {
+      font-size: $font-size-lg;
+      font-weight: $font-weight-semibold;
+      color: $color-secondary;
+      margin-bottom: $spacing-3;
+
+      @include md {
+        font-size: $font-size-xl;
+      }
+    }
+
+    &-description {
+      font-size: $font-size-base;
+      color: $color-grey-light;
+      line-height: $line-height-relaxed;
+    }
+  }
+
+  // Mobile Carousel
+  &__carousel {
+    display: block;
+    overflow: hidden;
+
+    @include md {
+      display: none;
+    }
+
+    &-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    &-card {
+      flex: 0 0 100%;
+      @include card-dark;
+      text-align: center;
+      margin: 0 $spacing-2;
+    }
+
+    &-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: $spacing-4;
+      margin-top: $spacing-6;
+    }
+
+    &-btn {
+      @include flex-center;
+      width: 44px;
+      height: 44px;
+      background-color: rgba($color-secondary, 0.1);
+      border: none;
+      border-radius: $radius-full;
+      color: $color-secondary;
+      cursor: pointer;
+      transition: all $transition-fast;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &:hover {
+        background-color: $color-primary;
+      }
+    }
+
+    &-dots {
+      display: flex;
+      gap: $spacing-2;
+    }
+
+    &-dot {
+      width: 10px;
+      height: 10px;
+      background-color: rgba($color-secondary, 0.3);
+      border: none;
+      border-radius: $radius-full;
+      cursor: pointer;
+      transition: all $transition-fast;
+
+      &--active {
+        background-color: $color-primary;
+        width: 24px;
+      }
+    }
+  }
+}

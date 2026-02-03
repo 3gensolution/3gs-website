@@ -1,0 +1,109 @@
+@use '../../../styles/utils' as *;
+
+.services-approach {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-12;
+
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: $spacing-16;
+  }
+
+  &__content {
+    // Content section
+  }
+
+  &__label {
+    display: inline-block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $color-primary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    @include heading-2;
+    color: $color-secondary;
+    margin-bottom: $spacing-8;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+    padding: $spacing-4 0;
+    border-bottom: 1px solid rgba($color-secondary, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &-icon {
+      @include flex-center;
+      width: 32px;
+      height: 32px;
+      background-color: rgba($color-primary, 0.2);
+      border-radius: $radius-full;
+      flex-shrink: 0;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        color: $color-primary;
+      }
+    }
+
+    &-text {
+      font-size: $font-size-base;
+      color: $color-grey-light;
+
+      @include md {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  &__cta {
+    background: linear-gradient(135deg, $color-dark-light 0%, $color-dark 100%);
+    border: 1px solid rgba($color-secondary, 0.1);
+    border-radius: $radius-xl;
+    padding: $spacing-8;
+    text-align: center;
+
+    @include md {
+      padding: $spacing-10;
+    }
+
+    &-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+      margin-bottom: $spacing-4;
+
+      @include md {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    &-text {
+      font-size: $font-size-base;
+      color: $color-grey-light;
+      line-height: $line-height-relaxed;
+      margin-bottom: $spacing-6;
+
+      @include md {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}

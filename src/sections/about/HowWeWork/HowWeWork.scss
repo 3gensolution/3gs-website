@@ -1,0 +1,126 @@
+@use '../../../styles/utils' as *;
+
+.how-we-work {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-12;
+
+  @include lg {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-16;
+  }
+
+  &__content {
+    // Content styling
+  }
+
+  &__label {
+    display: inline-block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: $color-primary;
+    margin-bottom: $spacing-4;
+  }
+
+  &__title {
+    @include heading-2;
+    color: $color-secondary;
+    margin-bottom: $spacing-8;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-4;
+    padding: $spacing-4 0;
+    border-bottom: 1px solid rgba($color-secondary, 0.1);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &-number {
+      font-size: $font-size-sm;
+      font-weight: $font-weight-bold;
+      color: $color-primary;
+      min-width: 30px;
+    }
+
+    &-text {
+      font-size: $font-size-base;
+      color: $color-grey-light;
+      line-height: $line-height-relaxed;
+
+      @include md {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-8;
+  }
+
+  &__card {
+    @include card-dark;
+
+    &-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+      margin-bottom: $spacing-4;
+
+      @include md {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    &-text {
+      font-size: $font-size-base;
+      color: $color-grey-light;
+      line-height: $line-height-relaxed;
+
+      @include md {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+
+  &__cta {
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+    border-radius: $radius-lg;
+    padding: $spacing-8;
+    text-align: center;
+
+    &-title {
+      font-size: $font-size-xl;
+      font-weight: $font-weight-bold;
+      color: $color-secondary;
+      margin-bottom: $spacing-6;
+
+      @include md {
+        font-size: $font-size-2xl;
+      }
+    }
+
+    .btn--primary {
+      background-color: $color-secondary;
+      color: $color-primary;
+
+      &:hover:not(:disabled) {
+        background-color: $color-dark;
+        color: $color-secondary;
+      }
+    }
+  }
+}

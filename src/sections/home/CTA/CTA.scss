@@ -1,0 +1,75 @@
+@use '../../../styles/utils' as *;
+
+.cta {
+  position: relative;
+  padding: $spacing-20 $spacing-4;
+  overflow: hidden;
+
+  @include md {
+    padding: $spacing-24 $spacing-8;
+  }
+
+  &__background {
+    @include absolute-fill;
+    background-color: $color-primary;
+  }
+
+  &__gradient {
+    @include absolute-fill;
+    background: linear-gradient(
+      135deg,
+      rgba($color-dark, 0.1) 0%,
+      transparent 50%,
+      rgba($color-dark, 0.1) 100%
+    );
+  }
+
+  &__pattern {
+    @include absolute-fill;
+    background-image: radial-gradient(
+      circle at 20% 50%,
+      rgba($color-secondary, 0.1) 0%,
+      transparent 50%
+    );
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $spacing-6;
+  }
+
+  &__text {
+    font-size: $font-size-lg;
+    color: rgba($color-secondary, 0.9);
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-8;
+
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  .btn--primary {
+    background-color: $color-secondary;
+    color: $color-primary;
+
+    &:hover:not(:disabled) {
+      background-color: $color-dark;
+      color: $color-secondary;
+    }
+  }
+}

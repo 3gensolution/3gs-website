@@ -1,0 +1,171 @@
+@use '../../../styles/utils' as *;
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: $z-loader;
+  @include flex-center;
+  background-color: $bg-dark;
+  overflow: hidden;
+
+  &__background {
+    @include absolute-fill;
+    pointer-events: none;
+  }
+
+  &__grid {
+    @include absolute-fill;
+    background-image:
+      linear-gradient(rgba($color-primary, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($color-primary, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridPulse 4s ease-in-out infinite;
+  }
+
+  &__gradient {
+    @include absolute-fill;
+    background: radial-gradient(
+      circle at center,
+      rgba($color-primary, 0.1) 0%,
+      transparent 50%
+    );
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    @include flex-column-center;
+    gap: $spacing-8;
+  }
+
+  &__particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    pointer-events: none;
+  }
+
+  &__particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background-color: $color-primary;
+    border-radius: 50%;
+    opacity: 0.6;
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{$i * 30}deg) translateX(40px);
+      }
+    }
+  }
+
+  &__logo {
+    position: relative;
+
+    &-img {
+      height: 100px;
+      width: auto;
+      object-fit: contain;
+
+      @include md {
+        height: 130px;
+      }
+
+      @include lg {
+        height: 150px;
+      }
+    }
+  }
+
+  &__progress-container {
+    width: 200px;
+
+    @include md {
+      width: 280px;
+    }
+  }
+
+  &__progress {
+    width: 100%;
+    height: 3px;
+    background-color: rgba($color-secondary, 0.1);
+    border-radius: $radius-full;
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, $color-primary, $color-primary-light);
+    border-radius: $radius-full;
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px rgba($color-primary, 0.5);
+  }
+
+  &__text {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba($color-secondary, 0.5);
+  }
+
+  &__lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__line {
+    position: absolute;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba($color-primary, 0.3),
+      transparent
+    );
+    height: 1px;
+
+    &--1 {
+      top: 20%;
+      left: -100%;
+      width: 100%;
+      animation: loaderLine 3s ease-in-out infinite;
+    }
+
+    &--2 {
+      top: 50%;
+      right: -100%;
+      width: 80%;
+      animation: loaderLine 3s ease-in-out infinite 0.5s;
+    }
+
+    &--3 {
+      top: 80%;
+      left: -100%;
+      width: 60%;
+      animation: loaderLine 3s ease-in-out infinite 1s;
+    }
+  }
+}
+
+@keyframes loaderLine {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}

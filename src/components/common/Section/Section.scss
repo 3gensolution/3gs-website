@@ -1,0 +1,50 @@
+@use '../../../styles/utils' as *;
+
+.section {
+  position: relative;
+  @include section-padding;
+  overflow: hidden;
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 1;
+  }
+
+  // Variants
+  &--light {
+    background-color: $bg-light;
+    color: $color-dark;
+  }
+
+  &--dark {
+    background-color: $bg-dark;
+    color: $color-secondary;
+  }
+
+  &--gradient {
+    background: $bg-gradient;
+    color: $color-secondary;
+  }
+
+  &--primary {
+    background-color: $color-primary;
+    color: $color-secondary;
+  }
+
+  // Modifiers
+  &--full-height {
+    min-height: 100vh;
+    @include flex-center;
+    padding-top: $spacing-24;
+  }
+
+  &--no-padding {
+    padding: 0;
+  }
+}
+
+// Animation utility class
+.animate-on-scroll {
+  opacity: 0;
+}

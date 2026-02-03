@@ -1,0 +1,386 @@
+// ===========================================
+// 3GS Solution - SCSS Mixins
+// ===========================================
+
+@use 'variables' as *;
+
+// Responsive Breakpoints
+@mixin xs {
+  @media (max-width: #{$breakpoint-xs - 1px}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin xxl {
+  @media (min-width: $breakpoint-2xl) {
+    @content;
+  }
+}
+
+// Mobile First
+@mixin mobile-only {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-only {
+  @media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop-only {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// Container
+@mixin container {
+  width: 100%;
+  max-width: $container-2xl;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $spacing-4;
+  padding-right: $spacing-4;
+
+  @include md {
+    padding-left: $spacing-6;
+    padding-right: $spacing-6;
+  }
+
+  @include lg {
+    padding-left: $spacing-8;
+    padding-right: $spacing-8;
+  }
+}
+
+// Flexbox Utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// Grid
+@mixin grid($columns: 1, $gap: $spacing-4) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Typography
+@mixin heading-1 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-5xl;
+  }
+
+  @include lg {
+    font-size: $font-size-6xl;
+  }
+}
+
+@mixin heading-2 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-4xl;
+  }
+
+  @include lg {
+    font-size: $font-size-5xl;
+  }
+}
+
+@mixin heading-3 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-3xl;
+  }
+}
+
+@mixin heading-4 {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+  line-height: $line-height-tight;
+
+  @include md {
+    font-size: $font-size-2xl;
+  }
+}
+
+@mixin body-text {
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+
+  @include md {
+    font-size: $font-size-lg;
+  }
+}
+
+@mixin small-text {
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+}
+
+// Buttons
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  padding: $spacing-3 $spacing-6;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  border-radius: $radius-md;
+  border: none;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-decoration: none;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background-color: $color-primary;
+  color: $color-secondary;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background-color: transparent;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary;
+    color: $color-secondary;
+  }
+}
+
+@mixin button-ghost {
+  @include button-base;
+  background-color: transparent;
+  color: $color-secondary;
+
+  &:hover:not(:disabled) {
+    background-color: rgba($color-secondary, 0.1);
+  }
+}
+
+// Cards
+@mixin card {
+  background-color: $color-secondary;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  box-shadow: $shadow-md;
+  transition: all $transition-base;
+}
+
+@mixin card-dark {
+  background-color: $color-dark-light;
+  border-radius: $radius-lg;
+  padding: $spacing-6;
+  border: 1px solid $color-dark-lighter;
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-4px);
+    box-shadow: $shadow-glow;
+  }
+}
+
+// Glassmorphism
+@mixin glass {
+  background: rgba($color-secondary, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba($color-secondary, 0.1);
+}
+
+@mixin glass-dark {
+  background: rgba($color-dark, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba($color-secondary, 0.1);
+}
+
+// Gradient Text
+@mixin gradient-text {
+  background: linear-gradient(135deg, $color-primary 0%, $color-primary-light 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// Section Spacing
+@mixin section-padding {
+  padding-top: $spacing-16;
+  padding-bottom: $spacing-16;
+
+  @include md {
+    padding-top: $spacing-20;
+    padding-bottom: $spacing-20;
+  }
+
+  @include lg {
+    padding-top: $spacing-24;
+    padding-bottom: $spacing-24;
+  }
+}
+
+// Absolute Positioning
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin absolute-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+// Hide Scrollbar
+@mixin hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// Custom Scrollbar
+@mixin custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-dark-light;
+    border-radius: $radius-full;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-grey;
+    border-radius: $radius-full;
+
+    &:hover {
+      background: $color-grey-light;
+    }
+  }
+}
+
+// Truncate Text
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Focus Ring
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Animation Keyframes
+@mixin fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@mixin slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+@mixin pulse {
+  animation: pulse 2s ease-in-out infinite;
+}

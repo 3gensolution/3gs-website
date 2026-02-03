@@ -1,0 +1,97 @@
+@use '../../../styles/utils' as *;
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  @include flex-center;
+  background-color: $bg-dark;
+  overflow: hidden;
+  padding: $spacing-24 $spacing-4 $spacing-16;
+
+  @include md {
+    padding: $spacing-24 $spacing-8;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    text-align: center;
+    @include container;
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: $font-weight-bold;
+    line-height: 1.1;
+    color: $color-secondary;
+    margin-bottom: $spacing-6;
+
+    &-highlight {
+      @include gradient-text;
+    }
+  }
+
+  &__subtitle {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    line-height: $line-height-relaxed;
+    color: $color-grey-light;
+    margin-bottom: $spacing-6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    line-height: $line-height-relaxed;
+    color: $color-grey;
+    margin-bottom: $spacing-10;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include md {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    justify-content: center;
+
+    @include sm {
+      flex-direction: row;
+    }
+  }
+
+  &__scroll-indicator {
+    position: absolute;
+    bottom: $spacing-8;
+    left: 50%;
+    transform: translateX(-50%);
+    @include flex-column-center;
+    gap: $spacing-2;
+    animation: float 2s ease-in-out infinite;
+  }
+
+  &__scroll-text {
+    font-size: $font-size-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: $color-grey;
+  }
+
+  &__scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(
+      to bottom,
+      $color-primary,
+      transparent
+    );
+    animation: drawLineVertical 1.5s ease-in-out infinite;
+  }
+}

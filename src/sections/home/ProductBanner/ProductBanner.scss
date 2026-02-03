@@ -1,0 +1,168 @@
+@use '../../../styles/utils' as *;
+
+.product-banner {
+  position: relative;
+  background: linear-gradient(135deg, $color-dark 0%, $color-dark-light 100%);
+  border: 1px solid rgba($color-primary, 0.3);
+  border-radius: $radius-xl;
+  padding: $spacing-6;
+  margin: $spacing-8 $spacing-4;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all $transition-base;
+
+  @include md {
+    padding: $spacing-8;
+    margin: $spacing-12 auto;
+    max-width: $container-xl;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+    transform: translateY(-4px);
+
+    .product-banner__glow {
+      opacity: 1;
+    }
+
+    .product-banner__cta-icon {
+      transform: translateX(4px);
+    }
+  }
+
+  &__glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 20% 50%,
+      rgba($color-primary, 0.15) 0%,
+      transparent 50%
+    );
+    opacity: 0.5;
+    transition: opacity $transition-base;
+    pointer-events: none;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+
+    @include lg {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    background-color: rgba($color-primary, 0.15);
+    color: $color-primary;
+    padding: $spacing-2 $spacing-4;
+    border-radius: $radius-full;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    width: fit-content;
+
+    &-icon {
+      font-size: $font-size-base;
+    }
+  }
+
+  &__info {
+    flex: 1;
+
+    @include lg {
+      padding: 0 $spacing-8;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    margin-bottom: $spacing-2;
+
+    @include md {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__description {
+    font-size: $font-size-base;
+    color: $color-grey-light;
+    line-height: $line-height-relaxed;
+    max-width: 600px;
+
+    @include md {
+      font-size: $font-size-lg;
+    }
+  }
+
+  &__cta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-2;
+    color: $color-primary;
+    font-weight: $font-weight-semibold;
+    white-space: nowrap;
+
+    &-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform $transition-fast;
+    }
+  }
+
+  &__decoration {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  &__line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba($color-primary, 0.3),
+      transparent
+    );
+
+    &--1 {
+      right: 50px;
+      animation: shimmerLine 3s ease-in-out infinite;
+    }
+
+    &--2 {
+      right: 100px;
+      animation: shimmerLine 3s ease-in-out infinite 0.5s;
+    }
+  }
+}
+
+@keyframes shimmerLine {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
