@@ -126,7 +126,7 @@ const Navbar = ({ onContactClick }) => {
         <div className="mobile-menu__header">
           <Link to="/" className="mobile-menu__logo" onClick={closeMobileMenu}>
             <img
-              src="/3gs-colored.jpeg"
+              src="/3gs-light.png"
               alt="3GS Solution"
             />
           </Link>
