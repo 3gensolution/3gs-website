@@ -4,7 +4,7 @@ import WhoWeAre from '../../sections/home/WhoWeAre';
 import Solutions from '../../sections/home/Solutions';
 import FeaturedProducts from '../../sections/home/FeaturedProducts';
 // import WhyUs from '../../sections/home/WhyUs';
-import CTA from '../../sections/home/CTA';
+// import CTA from '../../sections/home/CTA';
 import './Home.scss';
 
 const Home = () => {

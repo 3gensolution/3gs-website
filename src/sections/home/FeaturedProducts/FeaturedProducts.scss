@@ -49,16 +49,16 @@ $mint-accent: #D6EAD6;
   &__card {
     position: relative;
     display: block;
-    min-height: 280px;
+    min-height: 350px;
     border-radius: $radius-2xl;
     overflow: hidden;
 
     @include md {
-      min-height: 320px;
+      min-height: 400px;
     }
 
     @include lg {
-      min-height: 380px;
+      min-height: 450px;
     }
 
     // Color schemes
@@ -72,14 +72,6 @@ $mint-accent: #D6EAD6;
       .featured-products__shape--2 {
         background: $lavender-primary;
       }
-
-      .featured-products__name-highlight {
-        color: $bg-dark;
-      }
-
-      .featured-products__tagline {
-        color: rgba($bg-dark, 0.6);
-      }
     }
 
     &--lavender {
@@ -92,14 +84,6 @@ $mint-accent: #D6EAD6;
       .featured-products__shape--2 {
         background: $lavender-secondary;
       }
-
-      .featured-products__name-highlight {
-        color: $bg-dark;
-      }
-
-      .featured-products__tagline {
-        color: rgba($bg-dark, 0.6);
-      }
     }
 
     &--mint {
@@ -111,14 +95,6 @@ $mint-accent: #D6EAD6;
 
       .featured-products__shape--2 {
         background: $lavender-secondary;
-      }
-
-      .featured-products__name-highlight {
-        color: $bg-dark;
-      }
-
-      .featured-products__tagline {
-        color: rgba($bg-dark, 0.6);
       }
     }
   }
@@ -133,7 +109,6 @@ $mint-accent: #D6EAD6;
 
   &__shape {
     position: absolute;
-    transition: transform 0.6s $ease-out-expo;
 
     &--1 {
       width: 60%;
@@ -167,103 +142,87 @@ $mint-accent: #D6EAD6;
     position: relative;
     z-index: 2;
     padding: $spacing-8;
-    height: 100%;
+    min-height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     @include md {
       padding: $spacing-10;
+      min-height: 400px;
     }
 
     @include lg {
       padding: $spacing-12;
+      min-height: 450px;
       max-width: 65%;
     }
   }
 
+  &__card-top {
+    flex: 1;
+  }
+
+  &__card-bottom {
+    margin-top: auto;
+  }
+
+  // Product Name - Large, italic style
   &__name {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: $font-weight-normal;
-    line-height: 1.2;
-    margin-bottom: $spacing-6;
+    font-style: italic;
+    color: $bg-dark;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: $spacing-4;
 
     @include md {
-      margin-bottom: 0;
+      font-size: clamp(3rem, 5vw, 5rem);
+      margin-bottom: $spacing-6;
     }
   }
 
-  &__name-highlight {
-    font-weight: $font-weight-semibold;
-  }
-
+  // Tagline - Below name
   &__tagline {
-    display: block;
-    margin-top: $spacing-1;
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    color: rgba($bg-dark, 0.7);
+    line-height: 1.4;
+    max-width: 400px;
 
     @include md {
-      display: inline;
-      margin-top: 0;
+      font-size: $font-size-lg;
+    }
+
+    @include lg {
+      font-size: $font-size-xl;
     }
   }
 
-  &__cta {
+  // Status Tag - Bottom
+  &__status {
     display: inline-block;
     padding: $spacing-2 $spacing-4;
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
     border-radius: $radius-full;
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
-    color: $bg-dark;
-    cursor: default;
-    transition: all 0.3s ease;
-    align-self: flex-start;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 
     @include md {
-      padding: $spacing-3 $spacing-5;
+      padding: $spacing-2 $spacing-5;
       font-size: $font-size-sm;
     }
-  }
 
-  // Footer / View All
-  &__footer {
-    display: flex;
-    justify-content: center;
-    margin-top: $spacing-12;
-
-    @include lg {
-      margin-top: $spacing-16;
-    }
-  }
-
-  &__view-all {
-    display: inline-flex;
-    align-items: center;
-    gap: $spacing-3;
-    font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
-    color: $bg-dark;
-    text-decoration: none;
-    padding: $spacing-4 $spacing-6;
-    border: 1px solid rgba($bg-dark, 0.2);
-    border-radius: $radius-full;
-    transition: all 0.3s $ease-out-expo;
-
-    svg {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s $ease-out-expo;
+    &--coming-soon {
+      background: rgba(255, 255, 255, 0.9);
+      color: $bg-dark;
     }
 
-    &:hover {
+    &--live {
       background: $bg-dark;
       color: #fff;
-      border-color: $bg-dark;
-
-      svg {
-        transform: translateX(4px);
-      }
     }
   }
 }

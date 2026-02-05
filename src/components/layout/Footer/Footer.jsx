@@ -6,6 +6,8 @@ import './Footer.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const AGENCY_URL = 'https://agency.3gensolutions.co.uk'; // External agency website
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
@@ -83,6 +85,17 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href={AGENCY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer__nav-link footer__nav-link--external"
+                  data-cursor-hover
+                >
+                  Our Agency
+                </a>
+              </li>
             </ul>
           </div>
 

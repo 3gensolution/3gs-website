@@ -1,17 +1,50 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { gsap } from 'gsap';
 import CanvasBackground from '../../canvas/CanvasBackground';
 import TextReveal from '../TextReveal';
 import './PageHero.scss';
 
+// Generate random positions for scattered dots
+const generateScatteredDots = (count) => {
+  const dots = [];
+  for (let i = 0; i < count; i++) {
+    dots.push({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 12 + 8,
+    });
+  }
+  return dots;
+};
+
 const PageHero = ({ title, subtitle, variant = 'default', label }) => {
   const heroRef = useRef(null);
   const labelRef = useRef(null);
   const subtitleRef = useRef(null);
+  const dotsRef = useRef(null);
+
+  const scatteredDots = useMemo(() => generateScatteredDots(15), []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.3 });
+
+      // Animate dots
+      const dots = dotsRef.current?.querySelectorAll('.page-hero__dot');
+      if (dots && dots.length > 0) {
+        gsap.fromTo(dots,
+          { scale: 0, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.4,
+            stagger: { each: 0.05, from: 'random' },
+            ease: 'back.out(1.5)',
+            delay: 0.2,
+          }
+        );
+      }
 
       if (labelRef.current) {
         tl.fromTo(labelRef.current,
@@ -49,6 +82,23 @@ const PageHero = ({ title, subtitle, variant = 'default', label }) => {
         variant={getCanvasVariant()}
         particleCount={80}
       />
+
+      {/* Animated Dots */}
+      <div className="page-hero__dots" ref={dotsRef}>
+        {scatteredDots.map((dot) => (
+          <span
+            key={dot.id}
+            className="page-hero__dot"
+            style={{
+              left: `${dot.left}%`,
+              top: `${dot.top}%`,
+              width: `${dot.size}px`,
+              height: `${dot.size}px`,
+              '--delay': dot.id,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="page-hero__container">
         {label && (

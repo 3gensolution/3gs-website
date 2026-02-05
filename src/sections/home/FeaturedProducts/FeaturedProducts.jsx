@@ -7,27 +7,20 @@ import './FeaturedProducts.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const products = [
-  {
-    id: 'awinfi',
-    name: 'AwinFi',
-    tagline: 'Unlocking crypto liquidity for everyone.',
-    description: 'A digital lending platform that lets users deposit crypto assets and receive fiat cash — bridging the gap between digital and traditional finance.',
-    colorScheme: 'coral', // coral/peach
-  },
+const projects = [
   {
     id: 'wiremi',
     name: 'Wiremi',
     tagline: 'Financial tools built for the modern world.',
-    description: 'A fintech solution serving individuals and businesses with reliable, accessible financial infrastructure.',
-    colorScheme: 'lavender', // lavender/purple
+    status: 'live',
+    colorScheme: 'lavender',
   },
   {
     id: 'genius-home',
     name: 'Genius Home',
     tagline: 'Education reimagined through technology.',
-    description: 'A platform designed to support learning and knowledge accessibility, making education more engaging and effective.',
-    colorScheme: 'mint', // mint/teal
+    status: 'live',
+    colorScheme: 'mint',
   },
 ];
 
@@ -82,17 +75,17 @@ const FeaturedProducts = () => {
             stagger={0.02}
             duration={0.4}
           >
-            Some products we're creating:
+            Projects we've built for clients:
           </TextReveal>
         </div>
 
-        {/* Product Cards */}
+        {/* Project Cards */}
         <div className="featured-products__grid">
-          {products.map((product, index) => (
+          {projects.map((project, index) => (
             <div
-              key={product.id}
+              key={project.id}
               ref={el => cardsRef.current[index] = el}
-              className={`featured-products__card featured-products__card--${product.colorScheme}`}
+              className={`featured-products__card featured-products__card--${project.colorScheme}`}
             >
               {/* Geometric shapes */}
               <div className="featured-products__shapes">
@@ -101,14 +94,18 @@ const FeaturedProducts = () => {
               </div>
 
               <div className="featured-products__card-content">
-                <h3 className="featured-products__name">
-                  <span className="featured-products__name-highlight">{product.name}:</span>{' '}
-                  <span className="featured-products__tagline">{product.tagline}</span>
-                </h3>
+                {/* Top: Project Name */}
+                <div className="featured-products__card-top">
+                  <h3 className="featured-products__name">{project.name}</h3>
+                  <p className="featured-products__tagline">{project.tagline}</p>
+                </div>
 
-                <span className="featured-products__cta">
-                  Coming soon
-                </span>
+                {/* Bottom: Status Tag */}
+                <div className="featured-products__card-bottom">
+                  <span className={`featured-products__status featured-products__status--${project.status}`}>
+                    {project.status === 'coming-soon' ? 'Coming soon' : 'Live'}
+                  </span>
+                </div>
               </div>
             </div>
           ))}

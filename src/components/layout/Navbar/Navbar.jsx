@@ -10,6 +10,8 @@ const navLinks = [
   { path: '/contribute', label: 'Contribute' },
 ];
 
+const AGENCY_URL = 'https://agency.3gensolutions.co.uk'; // External agency website
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -114,6 +116,16 @@ const Navbar = () => {
                 <span className="navbar__link-line" />
               </NavLink>
             ))}
+            <a
+              href={AGENCY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="navbar__link navbar__link--external"
+              data-cursor-hover
+            >
+              <span className="navbar__link-text">Our Agency</span>
+              <span className="navbar__link-line" />
+            </a>
           </div>
 
           <div className="navbar__actions">
@@ -177,6 +189,16 @@ const Navbar = () => {
                 <span className="mobile-menu__link-text">{link.label}</span>
               </NavLink>
             ))}
+            <a
+              href={AGENCY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mobile-menu__link mobile-menu__link--external"
+              onClick={closeMobileMenu}
+            >
+              <span className="mobile-menu__link-number">05</span>
+              <span className="mobile-menu__link-text">Our Agency</span>
+            </a>
           </div>
 
           <Link

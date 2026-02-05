@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '../../../styles/utils' as *;
 
 // Home Hero - White background with black/orange text (Finiam style)
@@ -37,16 +38,24 @@ $hero-dot-color: $color-primary;
     pointer-events: none;
     z-index: 1;
 
-    // Scattered dots (random positions)
+    // Scattered dots (random positions) - with floating animation
     &--scattered {
       .hero__dot {
         position: absolute;
         background: $hero-dot-color;
         border-radius: 50%;
+        animation: dotFloat 4s ease-in-out infinite;
+
+        @for $i from 1 through 20 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.2}s;
+            animation-duration: #{3 + ($i % 3)}s;
+          }
+        }
       }
     }
 
-    // Horizontal line of dots (Finiam style)
+    // Horizontal line of dots - with pulse wave animation
     &--horizontal {
       display: flex;
       align-items: center;
@@ -62,10 +71,17 @@ $hero-dot-color: $color-primary;
         background: $hero-dot-color;
         border-radius: 50%;
         flex-shrink: 0;
+        animation: dotPulseWave 2s ease-in-out infinite;
+
+        @for $i from 1 through 18 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.1}s;
+          }
+        }
       }
     }
 
-    // Grid pattern
+    // Grid pattern - with ripple effect
     &--grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -87,10 +103,19 @@ $hero-dot-color: $color-primary;
         background: $hero-dot-color;
         border-radius: 50%;
         justify-self: center;
+        animation: dotRipple 3s ease-in-out infinite;
+
+        @for $i from 1 through 16 {
+          &:nth-child(#{$i}) {
+            $row: math.floor(math.div($i - 1, 4));
+            $col: ($i - 1) % 4;
+            animation-delay: #{($row + $col) * 0.15}s;
+          }
+        }
       }
     }
 
-    // Diagonal pattern
+    // Diagonal pattern - with flow animation
     &--diagonal {
       .hero__dot {
         position: absolute;
@@ -100,6 +125,8 @@ $hero-dot-color: $color-primary;
         border-radius: 50%;
         left: calc(10% + var(--i) * 7%);
         top: calc(20% + var(--i) * 5%);
+        animation: dotFlow 2.5s ease-in-out infinite;
+        animation-delay: calc(var(--i) * 0.15s);
 
         @include lg {
           left: calc(15% + var(--i) * 6%);
@@ -325,5 +352,58 @@ $hero-dot-color: $color-primary;
   100% {
     top: 100%;
     opacity: 0;
+  }
+}
+
+// Connectivity dot animations
+@keyframes dotFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(10px, -15px) scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-5px, 10px) scale(0.9);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translate(-10px, -5px) scale(1.05);
+    opacity: 1;
+  }
+}
+
+@keyframes dotPulseWave {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes dotRipple {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes dotFlow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(15px, 10px) scale(1.15);
+    opacity: 1;
   }
 }
