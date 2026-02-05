@@ -1,82 +1,136 @@
 @use '../../styles/utils' as *;
 
 .not-found {
-  position: relative;
   min-height: 100vh;
-  @include flex-center;
-  background-color: $bg-dark;
-  padding: $spacing-8;
-  overflow: hidden;
+  background-color: #F5F3F0;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-8 $spacing-4;
+
+  @include md {
+    padding: $spacing-12 $spacing-8;
+  }
+
+  @include lg {
+    padding: $spacing-16;
+  }
+
+  &__container {
+    @include container;
+    max-width: 1400px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 
   &__content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 600px;
+    margin-bottom: $spacing-16;
+
+    @include md {
+      margin-bottom: $spacing-20;
+    }
+
+    @include lg {
+      margin-bottom: $spacing-24;
+    }
   }
 
   &__code {
     display: block;
-    font-size: clamp(6rem, 20vw, 12rem);
-    font-weight: $font-weight-bold;
-    line-height: 1;
-    @include gradient-text;
-    margin-bottom: $spacing-4;
-  }
-
-  &__title {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: $font-weight-bold;
-    color: $color-secondary;
-    margin-bottom: $spacing-4;
-  }
-
-  &__text {
-    font-size: $font-size-lg;
-    color: $color-grey-light;
-    line-height: $line-height-relaxed;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-primary;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
     margin-bottom: $spacing-8;
 
     @include md {
-      font-size: $font-size-xl;
+      font-size: $font-size-sm;
+      margin-bottom: $spacing-10;
     }
   }
 
-  &__actions {
-    display: flex;
-    flex-direction: column;
-    gap: $spacing-4;
-    justify-content: center;
-    margin-bottom: $spacing-12;
+  &__headline {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: $font-weight-normal;
+    color: $bg-dark;
+    line-height: 1.4;
+    max-width: 900px;
+
+    @include md {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+    }
+  }
+
+  &__word {
+    display: inline;
+
+    &--italic {
+      font-style: italic;
+    }
+  }
+
+  // Navigation Links - Blokhaus style
+  &__links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
 
     @include sm {
-      flex-direction: row;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 
-  &__links {
-    p {
-      font-size: $font-size-sm;
-      color: $color-grey;
-      margin-bottom: $spacing-4;
+  &__link {
+    position: relative;
+    display: block;
+    padding: $spacing-6 0;
+    border-top: 1px solid rgba($bg-dark, 0.15);
+    text-decoration: none;
+
+    @include md {
+      padding: $spacing-8 $spacing-4;
     }
 
-    &-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: $spacing-4;
+    // Hover line effect
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: $color-primary;
+      transition: width 0.4s $ease-out-expo;
+    }
 
-      a {
-        color: $color-grey-light;
-        font-size: $font-size-sm;
-        text-decoration: none;
-        transition: color $transition-fast;
+    &:hover::after {
+      width: 100%;
+    }
 
-        &:hover {
-          color: $color-primary;
-        }
-      }
+    &:hover .not-found__link-text {
+      color: $color-primary;
+    }
+  }
+
+  &__link-text {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $bg-dark;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+
+    @include md {
+      font-size: $font-size-sm;
     }
   }
 }

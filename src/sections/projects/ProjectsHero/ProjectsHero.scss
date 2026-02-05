@@ -1,0 +1,129 @@
+@use '../../../styles/utils' as *;
+
+// Projects Hero - White background with black/orange text (Finiam style)
+$projects-bg: #FFFFFF;
+$projects-text-dark: $bg-dark; // Black text
+$projects-accent: $color-primary; // Orange #FF6B35
+
+.projects-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: flex-end;
+  background: $projects-bg;
+  overflow: hidden;
+  padding: $spacing-32 $spacing-4 $spacing-16;
+
+  @include md {
+    padding: $spacing-32 $spacing-8 $spacing-20;
+  }
+
+  @include lg {
+    padding: $spacing-32 $spacing-8 $spacing-24;
+  }
+
+  // Scattered Dots
+  &__dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__dot {
+    position: absolute;
+    background: $projects-accent;
+    border-radius: 50%;
+  }
+
+  &__container {
+    @include container;
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+  }
+
+  &__label {
+    display: inline-block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    color: $projects-accent;
+    margin-bottom: $spacing-6;
+
+    @include md {
+      margin-bottom: $spacing-8;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: $font-weight-normal;
+    color: $projects-text-dark;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin-bottom: $spacing-6;
+
+    @include lg {
+      font-size: clamp(3rem, 6vw, 4.5rem);
+    }
+
+    // Highlight key words in orange
+    .word:nth-child(1) {
+      color: $projects-accent;
+    }
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $projects-text-dark;
+    max-width: 500px;
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-8;
+
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // CTA Link - Pill button
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-3;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $projects-text-dark;
+    text-decoration: none;
+    padding: $spacing-4 $spacing-8;
+    border: 2px solid $projects-text-dark;
+    border-radius: $radius-full;
+    transition: all 0.3s $ease-out-expo;
+
+    @include md {
+      padding: $spacing-4 $spacing-10;
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.3s $ease-out-expo;
+    }
+
+    &:hover {
+      background: $projects-accent;
+      color: #FFFFFF;
+      border-color: $projects-accent;
+
+      svg {
+        transform: translateX(4px);
+      }
+    }
+  }
+}

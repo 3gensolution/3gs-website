@@ -1,16 +1,12 @@
-import PageHero from '../../components/common/PageHero';
+import ProjectsHero from '../../sections/projects/ProjectsHero';
 import ProjectsContent from '../../sections/projects/ProjectsContent';
 import './Projects.scss';
 
-const Projects = ({ onContactClick }) => {
+const Projects = () => {
   return (
     <div className="projects-page">
-      <PageHero
-        title="Our Projects"
-        subtitle="Explore the digital products and platforms we've built and are building."
-        variant="projects"
-      />
-      <ProjectsContent onContactClick={onContactClick} />
+      <ProjectsHero />
+      <ProjectsContent />
     </div>
   );
 };

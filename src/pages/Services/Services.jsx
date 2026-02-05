@@ -1,18 +1,12 @@
-import PageHero from '../../components/common/PageHero';
+import ServicesHero from '../../sections/services/ServicesHero';
 import ServicesContent from '../../sections/services/ServicesContent';
-import ServicesApproach from '../../sections/services/ServicesApproach';
 import './Services.scss';
 
-const Services = ({ onContactClick }) => {
+const Services = () => {
   return (
     <div className="services-page">
-      <PageHero
-        title="Our Solutions"
-        subtitle="Technology solutions designed for performance, scalability, and long-term impact."
-        variant="services"
-      />
+      <ServicesHero />
       <ServicesContent />
-      <ServicesApproach onContactClick={onContactClick} />
     </div>
   );
 };

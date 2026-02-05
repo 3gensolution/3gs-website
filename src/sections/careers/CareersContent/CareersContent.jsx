@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Section from '../../../components/common/Section';
 import Button from '../../../components/ui/Button';
 import './CareersContent.scss';
 
@@ -10,88 +9,89 @@ gsap.registerPlugin(ScrollTrigger);
 const values = [
   {
     id: 1,
-    icon: '💡',
+    numeral: 'I.',
     title: 'Innovation First',
-    description: 'We embrace new ideas and technologies to solve complex problems.',
+    description: 'We embrace new ideas and technologies to solve complex problems. Our approach combines creativity with technical excellence to deliver solutions that push boundaries.',
   },
   {
     id: 2,
-    icon: '🤝',
-    title: 'Collaboration',
-    description: 'We believe in the power of teamwork and open communication.',
+    numeral: 'II.',
+    title: 'Integrity of Thought and Action',
+    description: 'We apply a dialectic approach to critical reasoning to guard against self-deception and biases. We test and challenge our ideas to arrive at better solutions.',
   },
   {
     id: 3,
-    icon: '📈',
-    title: 'Growth Mindset',
-    description: 'Continuous learning and development are core to who we are.',
+    numeral: 'III.',
+    title: 'Client Focus',
+    description: 'Our clients interests are at the center of every decision we make. Our service culture ensures that we take care of our client\'s investments as if they were ours.',
   },
   {
     id: 4,
-    icon: '🎯',
-    title: 'Excellence',
-    description: 'We strive for the highest quality in everything we build.',
+    numeral: 'IV.',
+    title: 'Excellence in Execution',
+    description: 'We strive for the highest quality in everything we build. Continuous learning and development are core to who we are as a team.',
   },
 ];
 
-const CareersContent = ({ onContactClick }) => {
+const CareersContent = () => {
   const sectionRef = useRef(null);
+  const valuesRef = useRef([]);
 
   useEffect(() => {
-    const elements = sectionRef.current?.querySelectorAll('.careers-content__animate');
-
-    if (elements) {
-      elements.forEach((el, index) => {
-        gsap.fromTo(el,
-          { opacity: 0, y: 40 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-            delay: index * 0.1,
-          }
-        );
+    const ctx = gsap.context(() => {
+      // Animate each value with stagger
+      valuesRef.current.forEach((el, index) => {
+        if (el) {
+          gsap.fromTo(el,
+            { opacity: 0, y: 60 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              scrollTrigger: {
+                trigger: el,
+                start: 'top 85%',
+                toggleActions: 'play none none none',
+              },
+            }
+          );
+        }
       });
-    }
+    }, sectionRef);
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
-    <Section variant="light">
-      <div className="careers-content" ref={sectionRef}>
-        {/* Culture Section */}
-        <div className="careers-content__culture careers-content__animate">
-          <span className="careers-content__label">Our Culture</span>
-          <h2 className="careers-content__title">Join a Team That Builds the Future</h2>
-          <p className="careers-content__text">
-            At 3GS Solution, we foster a culture of innovation, collaboration, and
-            continuous growth. We believe that the best solutions come from diverse
-            perspectives and a shared commitment to excellence.
-          </p>
-        </div>
+    <div className="careers-content" ref={sectionRef}>
+      {/* Core Values Header */}
+      <div className="careers-content__header">
+        <h2 className="careers-content__header-title">
+          OUR<br />CORE VALUES
+        </h2>
+      </div>
 
-        {/* Values Grid */}
-        <div className="careers-content__values">
-          {values.map((value) => (
-            <div key={value.id} className="careers-content__value-card careers-content__animate">
-              <span className="careers-content__value-icon">{value.icon}</span>
+      {/* Values Section */}
+      <div className="careers-content__values">
+        <div className="careers-content__values-grid">
+          {values.map((value, index) => (
+            <div
+              key={value.id}
+              className={`careers-content__value careers-content__value--${index % 2 === 0 ? 'left' : 'right'}`}
+              ref={(el) => (valuesRef.current[index] = el)}
+            >
+              <span className="careers-content__value-numeral">{value.numeral}</span>
               <h3 className="careers-content__value-title">{value.title}</h3>
               <p className="careers-content__value-description">{value.description}</p>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* No Openings Notice */}
-        <div className="careers-content__notice careers-content__animate">
+      {/* No Openings Notice */}
+      <div className="careers-content__notice">
+        <div className="careers-content__notice-content">
           <div className="careers-content__notice-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10" />
@@ -104,39 +104,12 @@ const CareersContent = ({ onContactClick }) => {
             talented individuals. If you believe you'd be a great fit for 3GS Solution,
             feel free to reach out and introduce yourself.
           </p>
-          <Button variant="secondary" size="medium" onClick={onContactClick}>
+          <Button variant="secondary" size="medium" to="/contact">
             Get in Touch
           </Button>
         </div>
-
-        {/* Why Join Section */}
-        <div className="careers-content__why careers-content__animate">
-          <h3 className="careers-content__why-title">Why Join 3GS Solution?</h3>
-          <div className="careers-content__why-grid">
-            <div className="careers-content__why-item">
-              <span className="careers-content__why-number">01</span>
-              <h4>Meaningful Work</h4>
-              <p>Work on products that impact real businesses and users.</p>
-            </div>
-            <div className="careers-content__why-item">
-              <span className="careers-content__why-number">02</span>
-              <h4>Learning Environment</h4>
-              <p>Continuous opportunities to learn and grow your skills.</p>
-            </div>
-            <div className="careers-content__why-item">
-              <span className="careers-content__why-number">03</span>
-              <h4>Innovation Focus</h4>
-              <p>Be at the forefront of technology and innovation.</p>
-            </div>
-            <div className="careers-content__why-item">
-              <span className="careers-content__why-number">04</span>
-              <h4>Team Culture</h4>
-              <p>Collaborative environment with talented professionals.</p>
-            </div>
-          </div>
-        </div>
       </div>
-    </Section>
+    </div>
   );
 };
 

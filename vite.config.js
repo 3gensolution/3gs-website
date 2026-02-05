@@ -12,8 +12,8 @@ export default defineConfig({
         manualChunks: {
           // Split vendor chunks
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'three-vendor': ['three', '@react-three/fiber', '@react-three/drei'],
           'gsap-vendor': ['gsap'],
+          'lenis-vendor': ['lenis'],
         },
       },
     },
@@ -30,6 +30,6 @@ export default defineConfig({
   },
   // Optimize deps
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'gsap', 'three'],
+    include: ['react', 'react-dom', 'react-router-dom', 'gsap', 'lenis'],
   },
 })

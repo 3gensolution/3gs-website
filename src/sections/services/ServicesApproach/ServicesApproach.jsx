@@ -15,7 +15,7 @@ const approaches = [
   'Continuous improvement and optimization',
 ];
 
-const ServicesApproach = ({ onContactClick }) => {
+const ServicesApproach = () => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -74,7 +74,7 @@ const ServicesApproach = ({ onContactClick }) => {
             Whether you're building a new product or improving an existing system,
             our team is ready to help you move forward with confidence.
           </p>
-          <Button variant="primary" size="large" onClick={onContactClick}>
+          <Button variant="primary" size="large" to="/contact">
             Contact Us
           </Button>
         </div>

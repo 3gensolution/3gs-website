@@ -4,29 +4,84 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: $spacing-2;
+  gap: $spacing-3;
   font-family: $font-primary;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-semibold;
   text-decoration: none;
   border: none;
-  border-radius: $radius-md;
+  border-radius: $radius-full;
   cursor: pointer;
-  transition: all $transition-base;
+  transition: all 0.4s $ease-out-expo;
   white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+
+  &__text {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s $ease-out-expo;
+
+    &--left {
+      margin-right: -$spacing-1;
+    }
+
+    &--right {
+      margin-left: -$spacing-1;
+    }
+  }
+
+  &__arrow {
+    transition: transform 0.4s $ease-out-expo;
+    will-change: transform;
+  }
+
+  // Hover animation for arrow
+  &--with-arrow:hover {
+    .btn__arrow {
+      transform: translateX(4px);
+    }
+  }
 
   // Variants
   &--primary {
     background-color: $color-primary;
     color: $color-secondary;
+    box-shadow: 0 0 0 rgba($color-primary, 0);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 50%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
 
     &:hover:not(:disabled) {
-      background-color: $color-primary-dark;
-      transform: translateY(-2px);
-      box-shadow: $shadow-lg, 0 0 20px rgba($color-primary, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba($color-primary, 0.4), 0 0 0 1px rgba($color-primary, 0.5);
+
+      &::before {
+        opacity: 1;
+      }
     }
 
     &:active:not(:disabled) {
-      transform: translateY(0);
+      transform: translateY(-1px);
+      box-shadow: 0 5px 15px rgba($color-primary, 0.3);
     }
   }
 
@@ -35,20 +90,36 @@
     color: $color-primary;
     border: 2px solid $color-primary;
 
-    &:hover:not(:disabled) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
       background-color: $color-primary;
+      transition: width 0.4s $ease-out-expo;
+      z-index: 0;
+    }
+
+    &:hover:not(:disabled) {
       color: $color-secondary;
+
+      &::before {
+        width: 100%;
+      }
     }
   }
 
   &--outline {
     background-color: transparent;
     color: $color-secondary;
-    border: 2px solid rgba($color-secondary, 0.3);
+    border: 1px solid rgba($color-secondary, 0.2);
 
     &:hover:not(:disabled) {
-      border-color: $color-secondary;
-      background-color: rgba($color-secondary, 0.1);
+      border-color: $color-primary;
+      color: $color-primary;
+      box-shadow: 0 0 20px rgba($color-primary, 0.2);
     }
   }
 
@@ -56,35 +127,73 @@
     background-color: transparent;
     color: $color-secondary;
 
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $color-primary;
+      transition: width 0.3s $ease-out-expo;
+    }
+
     &:hover:not(:disabled) {
-      background-color: rgba($color-secondary, 0.1);
+      color: $color-primary;
+
+      &::after {
+        width: 100%;
+      }
     }
   }
 
   &--dark {
-    background-color: $color-dark;
+    background-color: $color-dark-surface;
     color: $color-secondary;
+    border: 1px solid $color-dark-border;
 
     &:hover:not(:disabled) {
-      background-color: $color-dark-light;
+      background-color: $color-dark-surface-light;
+      border-color: $color-primary;
       transform: translateY(-2px);
     }
   }
 
-  // Sizes
+  &--white {
+    background-color: $color-secondary;
+    color: $color-dark;
+
+    &:hover:not(:disabled) {
+      background-color: rgba($color-secondary, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  // Sizes - All use pill shape with generous horizontal padding
   &--small {
-    padding: $spacing-2 $spacing-4;
+    padding: $spacing-2 $spacing-6;
     font-size: $font-size-sm;
   }
 
   &--medium {
-    padding: $spacing-3 $spacing-6;
+    padding: $spacing-3 $spacing-8;
     font-size: $font-size-base;
   }
 
   &--large {
-    padding: $spacing-4 $spacing-8;
+    padding: $spacing-4 $spacing-10;
     font-size: $font-size-lg;
+  }
+
+  &--xlarge {
+    padding: $spacing-5 $spacing-12;
+    font-size: $font-size-xl;
+  }
+
+  // Full width
+  &--full-width {
+    width: 100%;
   }
 
   // Disabled
@@ -93,5 +202,11 @@
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
+  }
+
+  // Focus state
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 3px;
   }
 }

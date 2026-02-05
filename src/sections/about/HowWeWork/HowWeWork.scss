@@ -1,4 +1,5 @@
 @use '../../../styles/utils' as *;
+@use 'sass:color';
 
 .how-we-work {
   display: grid;
@@ -7,27 +8,35 @@
 
   @include lg {
     grid-template-columns: 1fr 1fr;
-    gap: $spacing-16;
-  }
-
-  &__content {
-    // Content styling
+    gap: $spacing-20;
   }
 
   &__label {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-3;
     font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-medium;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
+    letter-spacing: $letter-spacing-wider;
     color: $color-primary;
-    margin-bottom: $spacing-4;
+    margin-bottom: $spacing-6;
+    padding: $spacing-2 $spacing-4;
+    background: rgba($color-primary, 0.1);
+    border-radius: $radius-full;
+
+    &-icon {
+      font-size: 0.5rem;
+    }
   }
 
   &__title {
-    @include heading-2;
-    color: $color-secondary;
-    margin-bottom: $spacing-8;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin-bottom: $spacing-10;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
   }
 
   &__list {
@@ -39,25 +48,43 @@
   &__item {
     display: flex;
     align-items: flex-start;
-    gap: $spacing-4;
-    padding: $spacing-4 0;
-    border-bottom: 1px solid rgba($color-secondary, 0.1);
+    gap: $spacing-5;
+    padding: $spacing-5 0;
+    border-bottom: 1px solid $color-dark-border;
+    transition: all 0.3s ease;
 
     &:last-child {
       border-bottom: none;
     }
 
+    &:hover {
+      padding-left: $spacing-3;
+
+      .how-we-work__item-number {
+        color: $color-text-primary;
+        background: $color-primary;
+      }
+    }
+
     &-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 36px;
+      height: 36px;
       font-size: $font-size-sm;
       font-weight: $font-weight-bold;
       color: $color-primary;
-      min-width: 30px;
+      background: rgba($color-primary, 0.1);
+      border-radius: $radius-md;
+      transition: all 0.3s $ease-out-expo;
     }
 
     &-text {
       font-size: $font-size-base;
-      color: $color-grey-light;
+      color: $color-text-secondary;
       line-height: $line-height-relaxed;
+      padding-top: $spacing-2;
 
       @include md {
         font-size: $font-size-lg;
@@ -72,12 +99,19 @@
   }
 
   &__card {
-    @include card-dark;
+    background: $color-dark-card;
+    border: 1px solid $color-dark-border;
+    border-radius: $radius-xl;
+    padding: $spacing-8;
+
+    @include md {
+      padding: $spacing-10;
+    }
 
     &-title {
       font-size: $font-size-xl;
       font-weight: $font-weight-bold;
-      color: $color-secondary;
+      color: $color-text-primary;
       margin-bottom: $spacing-4;
 
       @include md {
@@ -87,7 +121,7 @@
 
     &-text {
       font-size: $font-size-base;
-      color: $color-grey-light;
+      color: $color-text-secondary;
       line-height: $line-height-relaxed;
 
       @include md {
@@ -97,16 +131,17 @@
   }
 
   &__cta {
-    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
-    border-radius: $radius-lg;
-    padding: $spacing-8;
+    background: linear-gradient(135deg, $color-primary 0%, color.adjust($color-primary, $lightness: -10%) 100%);
+    border-radius: $radius-xl;
+    padding: $spacing-10;
     text-align: center;
 
     &-title {
       font-size: $font-size-xl;
       font-weight: $font-weight-bold;
-      color: $color-secondary;
+      color: $color-text-primary;
       margin-bottom: $spacing-6;
+      line-height: $line-height-snug;
 
       @include md {
         font-size: $font-size-2xl;
@@ -114,12 +149,22 @@
     }
 
     .btn--primary {
-      background-color: $color-secondary;
+      background-color: $color-text-primary;
       color: $color-primary;
+      border-color: $color-text-primary;
 
       &:hover:not(:disabled) {
-        background-color: $color-dark;
-        color: $color-secondary;
+        background-color: $bg-dark;
+        color: $color-text-primary;
+        border-color: $bg-dark;
+      }
+
+      .btn__arrow {
+        color: $color-primary;
+      }
+
+      &:hover .btn__arrow {
+        color: $color-text-primary;
       }
     }
   }

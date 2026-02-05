@@ -2,45 +2,109 @@
 
 .page-hero {
   position: relative;
-  min-height: 50vh;
+  min-height: 55vh;
   @include flex-center;
   background-color: $bg-dark;
-  padding: $spacing-32 $spacing-4 $spacing-16;
+  padding: $spacing-32 $spacing-4 $spacing-20;
   overflow: hidden;
 
   @include md {
     min-height: 60vh;
-    padding: $spacing-32 $spacing-8 $spacing-20;
+    padding: $spacing-40 $spacing-8 $spacing-24;
   }
 
   &__container {
     @include container;
     position: relative;
-    z-index: 1;
+    z-index: 2;
     text-align: center;
   }
 
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-3;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wider;
+    color: $color-primary;
+    margin-bottom: $spacing-6;
+    padding: $spacing-2 $spacing-4;
+    background: rgba($color-primary, 0.1);
+    border-radius: $radius-full;
+
+    &-icon {
+      font-size: 0.5rem;
+    }
+  }
+
   &__title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
     font-weight: $font-weight-bold;
-    color: $color-secondary;
-    margin-bottom: $spacing-4;
+    color: $color-text-primary;
+    margin-bottom: $spacing-6;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
   }
 
   &__subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: $color-grey-light;
-    max-width: 600px;
+    font-size: $font-size-lg;
+    color: $color-text-secondary;
+    max-width: 650px;
     margin: 0 auto;
     line-height: $line-height-relaxed;
+
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__gradient-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(
+      to top,
+      $bg-dark 0%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
   }
 
   // Variants
   &--services {
-    background: linear-gradient(180deg, $bg-dark 0%, $color-dark-light 100%);
+    .page-hero__title {
+      .word:nth-child(n+2) {
+        color: $color-primary;
+      }
+    }
   }
 
   &--projects {
-    background: linear-gradient(180deg, $color-dark 0%, $bg-dark 100%);
+    .page-hero__title {
+      .word:last-child {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &--about {
+    .page-hero__title {
+      .word:nth-child(2) {
+        color: $color-primary;
+      }
+    }
+  }
+
+  &--careers {
+    .page-hero__title {
+      .word:last-child {
+        color: $color-primary;
+      }
+    }
   }
 }

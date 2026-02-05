@@ -1,90 +1,112 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Section from '../../../components/common/Section';
 import './ProductBanner.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ProductBanner = () => {
-  const bannerRef = useRef(null);
-  const contentRef = useRef(null);
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardRef = useRef(null);
 
   useEffect(() => {
-    const banner = bannerRef.current;
-    const content = contentRef.current;
+    const ctx = gsap.context(() => {
+      // Animate header
+      gsap.fromTo(headerRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
 
-    gsap.fromTo(content,
-      { opacity: 0, x: -50 },
-      {
-        opacity: 1,
-        x: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: banner,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        },
-      }
-    );
+      // Animate card
+      gsap.fromTo(cardRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: cardRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
+    }, sectionRef);
 
-    // Pulse animation for the badge
-    gsap.to('.product-banner__badge', {
-      scale: 1.05,
-      duration: 1,
-      ease: 'power1.inOut',
-      repeat: -1,
-      yoyo: true,
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
-  const handleClick = () => {
-    window.open('https://awinfi.com', '_blank', 'noopener,noreferrer');
-  };
-
   return (
-    <div className="product-banner" ref={bannerRef} onClick={handleClick}>
-      <div className="product-banner__glow" />
+    <Section variant="light" className="product-banner-section">
+      <div className="product-banner" ref={sectionRef}>
+        {/* Header */}
+        <div className="product-banner__header" ref={headerRef}>
+          <span className="product-banner__label">Featured Product</span>
+          <h2 className="product-banner__title">Check out our latest product</h2>
+        </div>
 
-      <div className="product-banner__container">
-        <div className="product-banner__content" ref={contentRef}>
-          <span className="product-banner__badge">
-            <span className="product-banner__badge-icon">🚀</span>
-            Product in Development
-          </span>
-
-          <div className="product-banner__info">
-            <h3 className="product-banner__title">AwinFi</h3>
-            <p className="product-banner__description">
-              A crypto lending platform enabling users to deposit digital assets and
-              access fiat liquidity with speed, security, and transparency.
-            </p>
+        {/* Product Card */}
+        <div
+          className="product-banner__card"
+          ref={cardRef}
+        >
+          {/* Geometric shapes */}
+          <div className="product-banner__shapes">
+            <div className="product-banner__shape product-banner__shape--1" />
+            <div className="product-banner__shape product-banner__shape--2" />
+            <div className="product-banner__shape product-banner__shape--3" />
           </div>
 
-          <div className="product-banner__cta">
-            <span className="product-banner__cta-text">Visit AwinFi</span>
-            <svg
-              className="product-banner__cta-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+          <div className="product-banner__card-content">
+            {/* Left: Image placeholder */}
+            <div className="product-banner__image">
+              <div className="product-banner__image-inner">
+                <span className="product-banner__image-icon">💎</span>
+                <span className="product-banner__image-text">AwinFi</span>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="product-banner__info">
+              <span className="product-banner__tag">
+                <span className="product-banner__tag-dot" />
+                Launching Soon
+              </span>
+
+              <h3 className="product-banner__name">
+                <span className="product-banner__name-highlight">AwinFi:</span>{' '}
+                <span className="product-banner__name-tagline">
+                  Unlocking crypto liquidity for everyone.
+                </span>
+              </h3>
+
+              <p className="product-banner__description">
+                A digital lending platform that lets you deposit crypto assets and receive
+                fiat cash instantly. Bridging the gap between digital and traditional finance
+                with security and transparency at its core.
+              </p>
+
+              <span className="product-banner__cta">
+                Coming soon
+              </span>
+            </div>
           </div>
         </div>
       </div>
-
-      <div className="product-banner__decoration">
-        <div className="product-banner__line product-banner__line--1" />
-        <div className="product-banner__line product-banner__line--2" />
-      </div>
-    </div>
+    </Section>
   );
 };
 

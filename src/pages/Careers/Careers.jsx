@@ -1,15 +1,12 @@
-import PageHero from '../../components/common/PageHero';
+import CareersHero from '../../sections/careers/CareersHero';
 import CareersContent from '../../sections/careers/CareersContent';
 import './Careers.scss';
 
-const Careers = ({ onContactClick }) => {
+const Careers = () => {
   return (
     <div className="careers-page">
-      <PageHero
-        title="Careers"
-        subtitle="Explore opportunities to grow with a team that builds the future."
-      />
-      <CareersContent onContactClick={onContactClick} />
+      <CareersHero />
+      <CareersContent />
     </div>
   );
 };

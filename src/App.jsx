@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Loader from './components/ui/Loader';
-import ContactModal from './components/ui/ContactModal';
+import CustomCursor from './components/ui/CustomCursor';
+import { useSmoothScroll } from './hooks';
 import './styles/main.scss';
 
 // Lazy load pages for code splitting
@@ -12,6 +13,7 @@ const About = lazy(() => import('./pages/About'));
 const Services = lazy(() => import('./pages/Services'));
 const Projects = lazy(() => import('./pages/Projects'));
 const Careers = lazy(() => import('./pages/Careers'));
+const Contact = lazy(() => import('./pages/Contact'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 const PageLoader = () => (
@@ -30,72 +32,46 @@ const ScrollToTop = () => {
   return null;
 };
 
-// Layout component
-const Layout = ({ children, onContactClick }) => {
+// Layout component with smooth scroll
+const Layout = ({ children, hideFooter = false }) => {
+  useSmoothScroll();
+
   return (
     <>
-      <Navbar onContactClick={onContactClick} />
+      <Navbar />
       <main>{children}</main>
-      <Footer onContactClick={onContactClick} />
+      {!hideFooter && <Footer />}
     </>
   );
 };
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleLoadComplete = () => {
     setIsLoading(false);
   };
 
-  const openContactModal = () => {
-    setIsContactModalOpen(true);
-  };
-
-  const closeContactModal = () => {
-    setIsContactModalOpen(false);
-  };
-
   return (
     <Router>
+      <CustomCursor />
+
       {isLoading && <Loader onLoadComplete={handleLoadComplete} />}
 
       <div className={`app ${isLoading ? 'app--loading' : ''}`}>
         <ScrollToTop />
 
-        <Layout onContactClick={openContactModal}>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route
-                path="/"
-                element={<Home onContactClick={openContactModal} />}
-              />
-              <Route
-                path="/about"
-                element={<About onContactClick={openContactModal} />}
-              />
-              <Route
-                path="/services"
-                element={<Services onContactClick={openContactModal} />}
-              />
-              <Route
-                path="/projects"
-                element={<Projects onContactClick={openContactModal} />}
-              />
-              <Route
-                path="/careers"
-                element={<Careers onContactClick={openContactModal} />}
-              />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
-        </Layout>
-
-        <ContactModal
-          isOpen={isContactModalOpen}
-          onClose={closeContactModal}
-        />
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/" element={<Layout><Home /></Layout>} />
+            <Route path="/about" element={<Layout><About /></Layout>} />
+            <Route path="/services" element={<Layout><Services /></Layout>} />
+            <Route path="/projects" element={<Layout><Projects /></Layout>} />
+            <Route path="/contribute" element={<Layout><Careers /></Layout>} />
+            <Route path="/contact" element={<Layout hideFooter><Contact /></Layout>} />
+            <Route path="*" element={<Layout><NotFound /></Layout>} />
+          </Routes>
+        </Suspense>
       </div>
     </Router>
   );

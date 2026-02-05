@@ -21,15 +21,28 @@ const ContactModal = ({ isOpen, onClose }) => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
 
-      gsap.fromTo(overlayRef.current,
+      const tl = gsap.timeline();
+
+      tl.fromTo(overlayRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.3 }
+        { opacity: 1, duration: 0.3, ease: 'power2.out' }
       );
 
-      gsap.fromTo(contentRef.current,
-        { opacity: 0, y: 50, scale: 0.95 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'back.out(1.2)', delay: 0.1 }
+      tl.fromTo(contentRef.current,
+        { opacity: 0, y: 60, scale: 0.95 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out' },
+        '-=0.1'
       );
+
+      // Animate form fields
+      const fields = contentRef.current?.querySelectorAll('.contact-modal__field, .contact-modal__submit');
+      if (fields) {
+        tl.fromTo(fields,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power2.out' },
+          '-=0.2'
+        );
+      }
     }
 
     return () => {
@@ -116,7 +129,7 @@ const ContactModal = ({ isOpen, onClose }) => {
       />
 
       <div className="contact-modal__content" ref={contentRef}>
-        <button className="contact-modal__close" onClick={handleClose}>
+        <button className="contact-modal__close" onClick={handleClose} data-cursor-hover>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M18 6L6 18M6 6l12 12" />
           </svg>
@@ -199,11 +212,17 @@ const ContactModal = ({ isOpen, onClose }) => {
                 type="submit"
                 className="contact-modal__submit"
                 disabled={isSubmitting}
+                data-cursor-hover
               >
                 {isSubmitting ? (
                   <span className="contact-modal__spinner" />
                 ) : (
-                  'Send Message'
+                  <>
+                    <span>Send Message</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </>
                 )}
               </button>
             </form>

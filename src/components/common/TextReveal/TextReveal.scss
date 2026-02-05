@@ -1,0 +1,27 @@
+@use '../../../styles/utils' as *;
+
+.text-reveal {
+  // Ensure words/chars are inline-block for animations
+  .word,
+  .char {
+    display: inline-block;
+    will-change: transform, opacity;
+  }
+
+  .line {
+    display: block;
+    will-change: transform, opacity;
+  }
+
+  // Reveal animation needs overflow hidden on words
+  &--reveal {
+    .word {
+      overflow: hidden;
+      display: inline-flex;
+    }
+
+    .char {
+      display: inline-block;
+    }
+  }
+}

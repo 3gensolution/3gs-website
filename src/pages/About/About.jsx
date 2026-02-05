@@ -1,17 +1,12 @@
-import PageHero from '../../components/common/PageHero';
+import AboutHero from '../../sections/about/AboutHero';
 import AboutContent from '../../sections/about/AboutContent';
-import HowWeWork from '../../sections/about/HowWeWork';
 import './About.scss';
 
-const About = ({ onContactClick }) => {
+const About = () => {
   return (
     <div className="about-page">
-      <PageHero
-        title="About 3GS Solution"
-        subtitle="Engineering reliable digital solutions for today and the future."
-      />
+      <AboutHero />
       <AboutContent />
-      <HowWeWork onContactClick={onContactClick} />
     </div>
   );
 };

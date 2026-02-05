@@ -1,152 +1,104 @@
 @use '../../../styles/utils' as *;
 
 .services-content {
-  &__intro {
-    max-width: 800px;
-    margin: 0 auto $spacing-12;
-    text-align: center;
+  background-color: $bg-dark;
+  padding: $spacing-16 $spacing-4;
+  min-height: 100vh;
 
-    p {
-      font-size: $font-size-lg;
-      color: $color-grey;
-      line-height: $line-height-relaxed;
-      margin-bottom: $spacing-4;
+  @include md {
+    padding: $spacing-24 $spacing-8;
+  }
 
-      @include md {
-        font-size: $font-size-xl;
-      }
+  @include lg {
+    padding: $spacing-32 $spacing-16;
+  }
 
-      &:last-child {
-        margin-bottom: 0;
-      }
+  &__container {
+    @include container;
+    max-width: 1400px;
+  }
+
+  // Large Statement Headline
+  &__headline {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: $font-weight-normal;
+    color: $color-text-primary;
+    line-height: 1.4;
+    max-width: 1000px;
+    margin-bottom: $spacing-20;
+
+    @include md {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      margin-bottom: $spacing-24;
+    }
+
+    @include lg {
+      margin-bottom: $spacing-32;
     }
   }
 
+  &__word {
+    display: inline;
+
+    &--italic {
+      font-style: italic;
+    }
+  }
+
+  // Services Grid - 3 columns like Blokhaus
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: $spacing-6;
+    gap: 0;
 
-    @include md {
+    @include sm {
       grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include lg {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
-  &__card {
-    @include card;
-    border: 2px solid transparent;
-    transition: all $transition-base;
+  &__item {
+    position: relative;
+    padding: $spacing-6 0;
+    border-top: 1px solid rgba($color-text-primary, 0.2);
 
-    &:hover {
-      transform: translateY(-8px);
-      box-shadow: $shadow-xl;
+    @include md {
+      padding: $spacing-8 $spacing-4;
     }
 
-    &--orange:hover {
-      border-color: $color-primary;
+    // Hover effect
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: $color-primary;
+      transition: width 0.4s $ease-out-expo;
     }
 
-    &--blue:hover {
-      border-color: #3B82F6;
+    &:hover::after {
+      width: 100%;
     }
 
-    &--green:hover {
-      border-color: #22C55E;
+    &:hover .services-content__item-text {
+      color: $color-primary;
     }
+  }
 
-    &--purple:hover {
-      border-color: #8B5CF6;
-    }
+  &__item-text {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    color: $color-text-primary;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
 
-    &-header {
-      display: flex;
-      align-items: flex-start;
-      gap: $spacing-4;
-      margin-bottom: $spacing-4;
-    }
-
-    &-number {
+    @include md {
       font-size: $font-size-sm;
-      font-weight: $font-weight-bold;
-      padding: $spacing-2 $spacing-3;
-      border-radius: $radius-md;
-
-      &--orange {
-        background-color: rgba($color-primary, 0.1);
-        color: $color-primary;
-      }
-
-      &--blue {
-        background-color: rgba(#3B82F6, 0.1);
-        color: #3B82F6;
-      }
-
-      &--green {
-        background-color: rgba(#22C55E, 0.1);
-        color: #22C55E;
-      }
-
-      &--purple {
-        background-color: rgba(#8B5CF6, 0.1);
-        color: #8B5CF6;
-      }
-    }
-
-    &-title {
-      font-size: $font-size-xl;
-      font-weight: $font-weight-bold;
-      color: $color-dark;
-      flex: 1;
-
-      @include md {
-        font-size: $font-size-2xl;
-      }
-    }
-
-    &-description {
-      font-size: $font-size-base;
-      color: $color-grey;
-      line-height: $line-height-relaxed;
-      margin-bottom: $spacing-6;
-    }
-
-    &-features {
-      &-title {
-        font-size: $font-size-sm;
-        font-weight: $font-weight-semibold;
-        color: $color-dark;
-        margin-bottom: $spacing-3;
-      }
-
-      &-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-
-        li {
-          position: relative;
-          padding-left: $spacing-6;
-          margin-bottom: $spacing-2;
-          font-size: $font-size-sm;
-          color: $color-grey;
-
-          &::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5em;
-            width: 8px;
-            height: 8px;
-            background-color: $color-primary;
-            border-radius: 50%;
-            opacity: 0.6;
-          }
-
-          &:last-child {
-            margin-bottom: 0;
-          }
-        }
-      }
     }
   }
 }

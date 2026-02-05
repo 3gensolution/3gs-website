@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Section from '../../../components/common/Section';
+import TextReveal from '../../../components/common/TextReveal';
 import './WhyUs.scss';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -10,67 +11,99 @@ const reasons = [
   {
     id: 1,
     icon: '🏢',
-    text: 'Enterprise-grade engineering standards',
+    title: 'Enterprise Standards',
+    text: 'Enterprise-grade engineering standards and best practices',
   },
   {
     id: 2,
     icon: '🔒',
-    text: 'Scalable and secure system design',
+    title: 'Secure & Scalable',
+    text: 'Scalable and secure system design from day one',
   },
   {
     id: 3,
     icon: '🎯',
-    text: 'Product-focused mindset',
+    title: 'Product Focus',
+    text: 'Product-focused mindset driving every decision',
   },
   {
     id: 4,
     icon: '📈',
-    text: 'Long-term support and growth readiness',
+    title: 'Growth Ready',
+    text: 'Long-term support and growth readiness built-in',
   },
   {
     id: 5,
     icon: '✨',
+    title: 'Future Tech',
     text: 'Clean, future-oriented technology approach',
   },
 ];
 
 const WhyUs = () => {
+  const sectionRef = useRef(null);
+  const contentRef = useRef(null);
   const listRef = useRef(null);
 
   useEffect(() => {
-    const items = listRef.current?.querySelectorAll('.why-us__item');
+    const ctx = gsap.context(() => {
+      // Animate content
+      gsap.fromTo(contentRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        }
+      );
 
-    if (items) {
-      items.forEach((item, index) => {
-        gsap.fromTo(item,
-          { opacity: 0, x: -30 },
+      // Animate items with stagger
+      const items = listRef.current?.querySelectorAll('.why-us__item');
+      if (items) {
+        gsap.fromTo(items,
+          { opacity: 0, x: -40 },
           {
             opacity: 1,
             x: 0,
             duration: 0.6,
+            stagger: 0.1,
             ease: 'power3.out',
             scrollTrigger: {
-              trigger: item,
-              start: 'top 85%',
+              trigger: listRef.current,
+              start: 'top 80%',
               toggleActions: 'play none none none',
             },
-            delay: index * 0.1,
           }
         );
-      });
-    }
+      }
+    }, sectionRef);
 
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
     <Section variant="dark">
-      <div className="why-us">
-        <div className="why-us__content">
-          <span className="why-us__label">Our Advantage</span>
-          <h2 className="why-us__title">Why Work With Us</h2>
+      <div className="why-us" ref={sectionRef}>
+        <div className="why-us__content" ref={contentRef}>
+          <span className="why-us__label">
+            <span className="why-us__label-icon">◆</span>
+            Our Advantage
+          </span>
+          <TextReveal
+            as="h2"
+            className="why-us__title"
+            type="words"
+            stagger={0.03}
+            duration={0.6}
+          >
+            Why Work With Us
+          </TextReveal>
           <p className="why-us__subtitle">
             We bring together expertise, innovation, and commitment to deliver
             solutions that drive real business results.
@@ -81,7 +114,10 @@ const WhyUs = () => {
           {reasons.map((reason) => (
             <li key={reason.id} className="why-us__item">
               <span className="why-us__item-icon">{reason.icon}</span>
-              <span className="why-us__item-text">{reason.text}</span>
+              <div className="why-us__item-content">
+                <span className="why-us__item-title">{reason.title}</span>
+                <span className="why-us__item-text">{reason.text}</span>
+              </div>
             </li>
           ))}
         </ul>

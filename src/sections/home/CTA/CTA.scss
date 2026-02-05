@@ -2,11 +2,11 @@
 
 .cta {
   position: relative;
-  padding: $spacing-20 $spacing-4;
+  padding: $spacing-24 $spacing-4;
   overflow: hidden;
 
   @include md {
-    padding: $spacing-24 $spacing-8;
+    padding: $spacing-32 $spacing-8;
   }
 
   &__background {
@@ -18,19 +18,41 @@
     @include absolute-fill;
     background: linear-gradient(
       135deg,
-      rgba($color-dark, 0.1) 0%,
-      transparent 50%,
-      rgba($color-dark, 0.1) 100%
+      rgba($bg-dark, 0.2) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba($bg-dark, 0.2) 100%
     );
   }
 
   &__pattern {
     @include absolute-fill;
-    background-image: radial-gradient(
-      circle at 20% 50%,
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba($color-secondary, 0.15) 0%,
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba($bg-dark, 0.2) 0%,
+        transparent 40%
+      );
+  }
+
+  &__glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
       rgba($color-secondary, 0.1) 0%,
-      transparent 50%
+      transparent 70%
     );
+    pointer-events: none;
   }
 
   &__container {
@@ -41,22 +63,24 @@
 
   &__content {
     text-align: center;
-    max-width: 700px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
   &__title {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: $font-weight-bold;
     color: $color-secondary;
-    margin-bottom: $spacing-6;
+    margin-bottom: $spacing-8;
+    line-height: $line-height-tight;
+    letter-spacing: $letter-spacing-tight;
   }
 
   &__text {
     font-size: $font-size-lg;
     color: rgba($color-secondary, 0.9);
     line-height: $line-height-relaxed;
-    margin-bottom: $spacing-8;
+    margin-bottom: $spacing-10;
 
     @include md {
       font-size: $font-size-xl;
@@ -66,9 +90,19 @@
   .btn--primary {
     background-color: $color-secondary;
     color: $color-primary;
+    border-color: $color-secondary;
 
     &:hover:not(:disabled) {
-      background-color: $color-dark;
+      background-color: $bg-dark;
+      color: $color-secondary;
+      border-color: $bg-dark;
+    }
+
+    .btn__arrow {
+      color: $color-primary;
+    }
+
+    &:hover .btn__arrow {
       color: $color-secondary;
     }
   }

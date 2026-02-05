@@ -1,50 +1,84 @@
 // ===========================================
 // 3GS Solution - Design System Variables
+// Enhanced for Futuristic Enterprise Design
 // ===========================================
 
-// Brand Colors
+@use 'sass:math';
+
+// ===== BRAND COLORS =====
 $color-primary: #FF6B35;
 $color-primary-light: #FF8A5C;
 $color-primary-dark: #E55A2B;
+$color-primary-glow: rgba(255, 107, 53, 0.3);
+$color-primary-subtle: rgba(255, 107, 53, 0.1);
 
 $color-secondary: #FFFFFF;
 $color-secondary-dark: #F5F5F5;
 
-$color-dark: #1A1A1A;
-$color-dark-light: #2D2D2D;
-$color-dark-lighter: #3D3D3D;
+// ===== DARK THEME COLORS =====
+$color-dark: #0A0A0A;           // Near black - main background
+$color-dark-elevated: #111111;   // Slightly elevated surfaces
+$color-dark-card: #141414;       // Card backgrounds
+$color-dark-surface: #1A1A1A;    // Elevated surfaces
+$color-dark-surface-light: #222222; // Lighter surfaces
+$color-dark-border: #2D2D2D;     // Borders
+$color-dark-lighter: #3D3D3D;    // Even lighter elements
 
+// Legacy aliases for backward compatibility
+$color-dark-light: $color-dark-surface;
+
+// ===== TEXT COLORS =====
+$color-text-primary: #FFFFFF;
+$color-text-secondary: #B0B0B0;
+$color-text-muted: #6B6B6B;
+$color-text-disabled: #4A4A4A;
+
+// Grey scale
 $color-grey: #6B6B6B;
 $color-grey-light: #9B9B9B;
 $color-grey-lighter: #E0E0E0;
 
-// Semantic Colors
+// ===== SEMANTIC COLORS =====
 $color-success: #22C55E;
+$color-success-light: rgba(34, 197, 94, 0.1);
 $color-error: #EF4444;
+$color-error-light: rgba(239, 68, 68, 0.1);
 $color-warning: #F59E0B;
+$color-warning-light: rgba(245, 158, 11, 0.1);
 $color-info: #3B82F6;
+$color-info-light: rgba(59, 130, 246, 0.1);
 
-// Background Colors
-$bg-dark: #0D0D0D;
+// ===== BACKGROUND COLORS =====
+$bg-dark: $color-dark;
+$bg-dark-elevated: $color-dark-elevated;
+$bg-dark-card: $color-dark-card;
 $bg-light: #FAFAFA;
-$bg-gradient: linear-gradient(135deg, $color-dark 0%, $color-dark-light 100%);
+$bg-gradient: linear-gradient(135deg, $color-dark 0%, $color-dark-surface 100%);
+$bg-gradient-radial: radial-gradient(ellipse at center, $color-dark-surface 0%, $color-dark 70%);
 
-// Typography
+// ===== TYPOGRAPHY =====
 $font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+$font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 
-// Font Sizes
-$font-size-xs: 0.75rem;    // 12px
-$font-size-sm: 0.875rem;   // 14px
-$font-size-base: 1rem;     // 16px
-$font-size-lg: 1.125rem;   // 18px
-$font-size-xl: 1.25rem;    // 20px
-$font-size-2xl: 1.5rem;    // 24px
-$font-size-3xl: 1.875rem;  // 30px
-$font-size-4xl: 2.25rem;   // 36px
-$font-size-5xl: 3rem;      // 48px
-$font-size-6xl: 3.75rem;   // 60px
-$font-size-7xl: 4.5rem;    // 72px
+// Font Sizes - Enhanced with clamp for fluid typography
+$font-size-xs: 0.75rem;      // 12px
+$font-size-sm: 0.875rem;     // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-lg: 1.125rem;     // 18px
+$font-size-xl: 1.25rem;      // 20px
+$font-size-2xl: 1.5rem;      // 24px
+$font-size-3xl: 1.875rem;    // 30px
+$font-size-4xl: 2.25rem;     // 36px
+$font-size-5xl: 3rem;        // 48px
+$font-size-6xl: 3.75rem;     // 60px
+$font-size-7xl: 4.5rem;      // 72px
+$font-size-8xl: 6rem;        // 96px
+$font-size-9xl: 8rem;        // 128px
+
+// Fluid font sizes for hero headings
+$font-size-hero: clamp(2.5rem, 8vw, 6rem);
+$font-size-hero-lg: clamp(3rem, 10vw, 8rem);
+$font-size-display: clamp(3.5rem, 12vw, 10rem);
 
 // Font Weights
 $font-weight-light: 300;
@@ -52,13 +86,25 @@ $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
+$font-weight-extrabold: 800;
 
 // Line Heights
-$line-height-tight: 1.2;
+$line-height-none: 1;
+$line-height-tight: 1.1;
+$line-height-snug: 1.25;
 $line-height-normal: 1.5;
-$line-height-relaxed: 1.75;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
 
-// Spacing
+// Letter Spacing
+$letter-spacing-tight: -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide: 0.02em;
+$letter-spacing-wider: 0.05em;
+$letter-spacing-widest: 0.1em;
+
+// ===== SPACING =====
+$spacing-0: 0;
 $spacing-1: 0.25rem;   // 4px
 $spacing-2: 0.5rem;    // 8px
 $spacing-3: 0.75rem;   // 12px
@@ -68,54 +114,101 @@ $spacing-6: 1.5rem;    // 24px
 $spacing-8: 2rem;      // 32px
 $spacing-10: 2.5rem;   // 40px
 $spacing-12: 3rem;     // 48px
+$spacing-14: 3.5rem;   // 56px
 $spacing-16: 4rem;     // 64px
 $spacing-20: 5rem;     // 80px
 $spacing-24: 6rem;     // 96px
+$spacing-28: 7rem;     // 112px
 $spacing-32: 8rem;     // 128px
+$spacing-36: 9rem;     // 144px
+$spacing-40: 10rem;    // 160px
+$spacing-48: 12rem;    // 192px
 
-// Breakpoints
+// Section spacing
+$section-spacing-sm: $spacing-16;
+$section-spacing-md: $spacing-24;
+$section-spacing-lg: $spacing-32;
+$section-spacing-xl: $spacing-40;
+
+// ===== BREAKPOINTS =====
 $breakpoint-xs: 480px;
 $breakpoint-sm: 640px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
 $breakpoint-2xl: 1536px;
+$breakpoint-3xl: 1920px;
 
-// Container Widths
+// ===== CONTAINER WIDTHS =====
 $container-sm: 640px;
 $container-md: 768px;
 $container-lg: 1024px;
 $container-xl: 1280px;
-$container-2xl: 1920px;
+$container-2xl: 1440px;
+$container-max: 1600px;
 
-// Border Radius
-$radius-sm: 0.25rem;   // 4px
-$radius-md: 0.5rem;    // 8px
-$radius-lg: 0.75rem;   // 12px
-$radius-xl: 1rem;      // 16px
-$radius-2xl: 1.5rem;   // 24px
+// ===== BORDER RADIUS =====
+$radius-none: 0;
+$radius-sm: 0.25rem;    // 4px
+$radius-md: 0.5rem;     // 8px
+$radius-lg: 0.75rem;    // 12px
+$radius-xl: 1rem;       // 16px
+$radius-2xl: 1.5rem;    // 24px
+$radius-3xl: 2rem;      // 32px
 $radius-full: 9999px;
 
-// Shadows
+// ===== SHADOWS =====
 $shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 $shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 $shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 $shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 $shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+// Glow shadows
 $shadow-glow: 0 0 40px rgba($color-primary, 0.3);
+$shadow-glow-sm: 0 0 20px rgba($color-primary, 0.2);
+$shadow-glow-lg: 0 0 60px rgba($color-primary, 0.4);
 
-// Transitions
-$transition-fast: 150ms ease;
-$transition-base: 300ms ease;
-$transition-slow: 500ms ease;
-$transition-slower: 700ms ease;
+// Dark mode shadows
+$shadow-dark-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+$shadow-dark-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+$shadow-dark-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
 
-// Z-Index Scale
+// ===== TRANSITIONS =====
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slower: 700ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// Easing functions
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+$ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+$ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// ===== Z-INDEX SCALE =====
+$z-negative: -1;
+$z-base: 0;
 $z-dropdown: 100;
 $z-sticky: 200;
 $z-fixed: 300;
-$z-modal-backdrop: 400;
-$z-modal: 500;
-$z-popover: 600;
-$z-tooltip: 700;
+$z-navbar: 400;
+$z-modal-backdrop: 500;
+$z-modal: 600;
+$z-popover: 700;
+$z-tooltip: 800;
+$z-cursor: 900;
 $z-loader: 1000;
+
+// ===== BLUR VALUES =====
+$blur-sm: 4px;
+$blur-md: 8px;
+$blur-lg: 16px;
+$blur-xl: 24px;
+$blur-2xl: 40px;
+
+// ===== ASPECT RATIOS =====
+$aspect-square: 1;
+$aspect-video: math.div(16, 9);
+$aspect-photo: math.div(4, 3);
+$aspect-portrait: math.div(3, 4);

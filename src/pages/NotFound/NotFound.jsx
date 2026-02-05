@@ -1,67 +1,87 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
-import ParticleBackground from '../../components/three/ParticleBackground';
-import Button from '../../components/ui/Button';
 import './NotFound.scss';
 
 const NotFound = () => {
-  const contentRef = useRef(null);
+  const pageRef = useRef(null);
+  const codeRef = useRef(null);
+  const headlineRef = useRef(null);
+  const linksRef = useRef(null);
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.3 });
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ delay: 0.3 });
 
-    tl.fromTo('.not-found__code',
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' }
-    )
-    .fromTo('.not-found__title',
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
-      '-=0.3'
-    )
-    .fromTo('.not-found__text',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
-      '-=0.2'
-    )
-    .fromTo('.not-found__actions',
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' },
-      '-=0.2'
-    );
+      // Animate 404 code
+      tl.fromTo(codeRef.current,
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+      );
 
-    return () => tl.kill();
+      // Animate headline words
+      const words = headlineRef.current?.querySelectorAll('.not-found__word');
+      if (words) {
+        tl.fromTo(words,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 0.7, stagger: 0.05, ease: 'power3.out' },
+          '-=0.4'
+        );
+      }
+
+      // Animate links
+      const links = linksRef.current?.querySelectorAll('.not-found__link');
+      if (links) {
+        tl.fromTo(links,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' },
+          '-=0.3'
+        );
+      }
+    }, pageRef);
+
+    return () => ctx.revert();
   }, []);
 
-  return (
-    <div className="not-found">
-      <ParticleBackground variant="network" particleCount={100} />
+  const renderWord = (word, index, isItalic = false) => (
+    <span
+      key={index}
+      className={`not-found__word ${isItalic ? 'not-found__word--italic' : ''}`}
+    >
+      {word}{' '}
+    </span>
+  );
 
-      <div className="not-found__content" ref={contentRef}>
-        <span className="not-found__code">404</span>
-        <h1 className="not-found__title">Page Not Found</h1>
-        <p className="not-found__text">
-          The page you're looking for doesn't exist or has been moved.
-          Let's get you back on track.
-        </p>
-        <div className="not-found__actions">
-          <Button to="/" variant="primary" size="large">
-            Back to Home
-          </Button>
-          <Button to="/contact" variant="outline" size="large">
-            Contact Us
-          </Button>
+  return (
+    <div className="not-found" ref={pageRef}>
+      <div className="not-found__container">
+        <div className="not-found__content">
+          <span className="not-found__code" ref={codeRef}>404</span>
+
+          <h1 className="not-found__headline" ref={headlineRef}>
+            {"The page you're looking for".split(' ').map((word, i) => renderWord(word, `h-${i}`))}
+            {"doesn't exist".split(' ').map((word, i) => renderWord(word, `i1-${i}`, true))}
+            {"or has been moved. Let's get you back to".split(' ').map((word, i) => renderWord(word, `m-${i}`))}
+            {'somewhere familiar.'.split(' ').map((word, i) => renderWord(word, `i2-${i}`, true))}
+          </h1>
         </div>
 
-        <div className="not-found__links">
-          <p>Or try one of these pages:</p>
-          <div className="not-found__links-list">
-            <Link to="/about">About Us</Link>
-            <Link to="/services">Services</Link>
-            <Link to="/projects">Projects</Link>
-            <Link to="/careers">Careers</Link>
-          </div>
+        <div className="not-found__links" ref={linksRef}>
+          <Link to="/" className="not-found__link" data-cursor-hover>
+            <span className="not-found__link-text">HOME</span>
+          </Link>
+          <Link to="/about" className="not-found__link" data-cursor-hover>
+            <span className="not-found__link-text">ABOUT</span>
+          </Link>
+          <Link to="/services" className="not-found__link" data-cursor-hover>
+            <span className="not-found__link-text">SERVICES</span>
+          </Link>
+          <Link to="/projects" className="not-found__link" data-cursor-hover>
+            <span className="not-found__link-text">PRODUCTS</span>
+          </Link>
+          <Link to="/contact" className="not-found__link" data-cursor-hover>
+            <span className="not-found__link-text">CONTACT</span>
+          </Link>
         </div>
       </div>
     </div>

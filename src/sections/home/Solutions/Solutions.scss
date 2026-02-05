@@ -1,144 +1,171 @@
 @use '../../../styles/utils' as *;
 
 .solutions {
-  &__header {
-    text-align: center;
-    margin-bottom: $spacing-12;
-  }
+  position: relative;
 
-  &__label {
-    display: inline-block;
-    font-size: $font-size-sm;
-    font-weight: $font-weight-semibold;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: $color-primary;
-    margin-bottom: $spacing-4;
-  }
-
-  &__title {
-    @include heading-2;
-    color: $color-secondary;
-    margin-bottom: $spacing-4;
-  }
-
-  &__subtitle {
-    font-size: $font-size-lg;
-    color: $color-grey-light;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: $line-height-relaxed;
-  }
-
-  &__grid {
-    display: none;
-
-    @include md {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: $spacing-6;
-    }
-
-    @include lg {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  &__card {
-    @include card-dark;
-    text-align: center;
-
-    &-icon {
-      display: inline-flex;
-      font-size: 2.5rem;
-      margin-bottom: $spacing-4;
-    }
-
-    &-title {
-      font-size: $font-size-lg;
-      font-weight: $font-weight-semibold;
-      color: $color-secondary;
-      margin-bottom: $spacing-3;
-
-      @include md {
-        font-size: $font-size-xl;
-      }
-    }
-
-    &-description {
-      font-size: $font-size-base;
-      color: $color-grey-light;
-      line-height: $line-height-relaxed;
-    }
-  }
-
-  // Mobile Carousel
-  &__carousel {
-    display: block;
+  // Each panel is full viewport height
+  &__panel {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-20 $spacing-4;
     overflow: hidden;
 
     @include md {
-      display: none;
+      padding: $spacing-24 $spacing-8;
+    }
+  }
+
+  // Scattered dots background
+  &__panel-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &__panel-dot {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.6;
+  }
+
+  &__panel-content {
+    @include container;
+    max-width: 900px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__panel-number {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: $letter-spacing-wider;
+    margin-bottom: $spacing-4;
+  }
+
+  &__panel-subtitle {
+    display: block;
+    font-size: $font-size-sm;
+    font-weight: $font-weight-medium;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-widest;
+    margin-bottom: $spacing-6;
+
+    @include md {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-8;
+    }
+  }
+
+  &__panel-title {
+    font-size: clamp(3rem, 10vw, 7rem);
+    font-weight: $font-weight-normal;
+    color: #FFFFFF;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: $spacing-8;
+    font-style: italic;
+
+    @include md {
+      margin-bottom: $spacing-10;
+    }
+  }
+
+  &__panel-description {
+    font-size: $font-size-lg;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: $line-height-relaxed;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // CTA Panel - Light background
+  &__cta-panel {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-light;
+    padding: $spacing-20 $spacing-4;
+
+    @include md {
+      padding: $spacing-24 $spacing-8;
+    }
+  }
+
+  &__cta-content {
+    @include container;
+    max-width: 800px;
+    text-align: center;
+  }
+
+  &__cta-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: $font-weight-normal;
+    color: $bg-dark;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: $spacing-6;
+
+    @include md {
+      margin-bottom: $spacing-8;
+    }
+  }
+
+  &__cta-description {
+    font-size: $font-size-lg;
+    color: rgba($bg-dark, 0.7);
+    line-height: $line-height-relaxed;
+    margin-bottom: $spacing-10;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @include md {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-3;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $bg-dark;
+    text-decoration: none;
+    padding: $spacing-4 $spacing-10;
+    border: 2px solid $bg-dark;
+    border-radius: $radius-full;
+    transition: all 0.3s $ease-out-expo;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s $ease-out-expo;
     }
 
-    &-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
-
-    &-card {
-      flex: 0 0 100%;
-      @include card-dark;
-      text-align: center;
-      margin: 0 $spacing-2;
-    }
-
-    &-controls {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: $spacing-4;
-      margin-top: $spacing-6;
-    }
-
-    &-btn {
-      @include flex-center;
-      width: 44px;
-      height: 44px;
-      background-color: rgba($color-secondary, 0.1);
-      border: none;
-      border-radius: $radius-full;
-      color: $color-secondary;
-      cursor: pointer;
-      transition: all $transition-fast;
+    &:hover {
+      background: $color-primary;
+      color: #FFFFFF;
+      border-color: $color-primary;
 
       svg {
-        width: 20px;
-        height: 20px;
-      }
-
-      &:hover {
-        background-color: $color-primary;
-      }
-    }
-
-    &-dots {
-      display: flex;
-      gap: $spacing-2;
-    }
-
-    &-dot {
-      width: 10px;
-      height: 10px;
-      background-color: rgba($color-secondary, 0.3);
-      border: none;
-      border-radius: $radius-full;
-      cursor: pointer;
-      transition: all $transition-fast;
-
-      &--active {
-        background-color: $color-primary;
-        width: 24px;
+        transform: translateX(4px);
       }
     }
   }
