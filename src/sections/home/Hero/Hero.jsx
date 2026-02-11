@@ -8,31 +8,31 @@ import './Hero.scss';
 const slides = [
   {
     id: 1,
-    question: 'Need help building?',
-    answer: 'We make it happen.',
-    description: 'We learn from every experience by pushing the boundaries past the ordinary. Let\'s simplify technology and build the future, together.',
-    variant: 'scattered', // scattered dots
+    question: 'What problem are we solving?',
+    answer: 'Make your product easy & delightful.',
+    description: 'Deliver a product that users love — one so intuitive and useful they effortlessly adopt it and tell others. Focus on value, simplicity, and rapid iteration.',
+    variant: 'scattered',
   },
   {
     id: 2,
-    question: 'Digital complexity?',
-    answer: 'We make it simple.',
-    description: 'From concept to deployment, we build secure and scalable applications that power modern businesses.',
-    variant: 'horizontal', // horizontal line of dots
+    question: 'Why choose our product?',
+    answer: 'Experience value instantly.',
+    description: 'Give users a fast path to the “aha!” moment — where they immediately see the benefit. Success comes from letting the product speak for itself and drive growth.',
+    variant: 'horizontal',
   },
   {
     id: 3,
-    question: 'Tech challenges?',
-    answer: 'We solve them.',
-    description: 'Strategic guidance and robust engineering for your most ambitious digital projects.',
-    variant: 'grid', // grid pattern dots
+    question: 'How do we grow?',
+    answer: 'Let the product lead.',
+    description: 'Product‑led growth helps us scale organically — happy users share, adopt more features, and reduce reliance on costly sales outreach.',
+    variant: 'grid',
   },
   {
     id: 4,
-    question: 'Ready to scale?',
-    answer: 'Let\'s grow together.',
-    description: 'Systems architected for performance, resilience, and long-term success.',
-    variant: 'diagonal', // diagonal pattern
+    question: 'Built for whom?',
+    answer: 'People who build and succeed.',
+    description: 'Our tools empower creators, builders, and teams to solve real problems — from first use to long‑term success, with intuitive design and powerful outcomes.',
+    variant: 'diagonal',
   },
 ];
 
@@ -65,28 +65,35 @@ const Hero = () => {
     if (!slideRef.current) return;
 
     const ctx = gsap.context(() => {
-      // Animate dots based on variant
+      // Animate slide container - scale up from center
+      gsap.fromTo(slideRef.current,
+        { scale: 0.85, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'power3.out' }
+      );
+
+      // Animate dots - bounce in randomly
       const dots = dotsRef.current?.querySelectorAll('.hero__dot');
       if (dots && dots.length > 0) {
         gsap.fromTo(dots,
-          { scale: 0, opacity: 0 },
+          { scale: 0, opacity: 0, y: 30 },
           {
             scale: 1,
             opacity: 1,
-            duration: 0.4,
-            stagger: { each: 0.03, from: 'random' },
-            ease: 'back.out(1.5)',
-            delay: 0.2,
+            y: 0,
+            duration: 0.5,
+            stagger: { each: 0.04, from: 'random' },
+            ease: 'back.out(2)',
+            delay: 0.3,
           }
         );
       }
 
-      // Animate content
+      // Animate content - fade up from center
       const content = contentRef.current;
       if (content) {
         gsap.fromTo(content,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', delay: 0.6 }
+          { opacity: 0, y: 30, scale: 0.95 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out', delay: 0.5 }
         );
       }
     }, slideRef);
@@ -98,14 +105,15 @@ const Hero = () => {
     if (isAnimating || index === currentSlide) return;
     setIsAnimating(true);
 
-    // Animate out current slide
+    // Animate out current slide - zoom in and fade out
     gsap.to(slideRef.current, {
       opacity: 0,
-      duration: 0.3,
+      scale: 1.1,
+      duration: 0.4,
       ease: 'power2.in',
       onComplete: () => {
         setCurrentSlide(index);
-        gsap.set(slideRef.current, { opacity: 1 });
+        gsap.set(slideRef.current, { opacity: 0, scale: 0.85 });
         setIsAnimating(false);
       },
     });
