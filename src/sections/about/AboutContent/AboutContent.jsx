@@ -6,11 +6,11 @@ import './AboutContent.scss';
 gsap.registerPlugin(ScrollTrigger);
 
 const principles = [
-  'CLARITY BEFORE EXECUTION',
-  'SCALABILITY BY DESIGN',
-  'SECURITY & PERFORMANCE',
+  'USER-FIRST CLARITY',
+  'SCALABLE BY DESIGN',
+  'SECURE & RELIABLE',
   'BUSINESS ALIGNMENT',
-  'LONG-TERM GROWTH',
+  'LONG-TERM IMPACT',
   'PRODUCT-DRIVEN MINDSET',
 ];
 
@@ -100,11 +100,11 @@ const AboutContent = () => {
         {/* Large Statement Headline */}
         <h2 className="about-content__headline" ref={headlineRef}>
           {'3GS is a'.split(' ').map((word, i) => renderWord(word, `h-${i}`))}
-          {'technology company'.split(' ').map((word, i) => renderWord(word, `i1-${i}`, true))}
-          {'dedicated to building scalable, secure, and future-ready digital solutions. We focus on'.split(' ').map((word, i) => renderWord(word, `m1-${i}`))}
-          {'designing systems'.split(' ').map((word, i) => renderWord(word, `i2-${i}`, true))}
-          {'and products that solve real business problems while remaining adaptable to'.split(' ').map((word, i) => renderWord(word, `m2-${i}`))}
-          {'change.'.split(' ').map((word, i) => renderWord(word, `i3-${i}`, true))}
+          {'product company'.split(' ').map((word, i) => renderWord(word, `i1-${i}`, true))}
+          {'that builds simple, powerful tools for people and businesses. From'.split(' ').map((word, i) => renderWord(word, `m1-${i}`))}
+          {'decentralized finance'.split(' ').map((word, i) => renderWord(word, `i2-${i}`, true))}
+          {'to AI-driven business solutions, we focus on outcomes, usability, and'.split(' ').map((word, i) => renderWord(word, `m2-${i}`))}
+          {'scale.'.split(' ').map((word, i) => renderWord(word, `i3-${i}`, true))}
         </h2>
 
         {/* Principles Grid */}
@@ -128,15 +128,15 @@ const AboutContent = () => {
           <div className="about-content__mission-block">
             <span className="about-content__mission-label">Our Mission</span>
             <p className="about-content__mission-text">
-              To build high-quality digital solutions that empower businesses, enhance user
-              experiences, and stand the test of time through innovation, scalability, and reliability.
+              To build simple, powerful products that help people and businesses thrive
+              in a digital world.
             </p>
           </div>
           <div className="about-content__mission-block">
             <span className="about-content__mission-label">Our Vision</span>
             <p className="about-content__mission-text">
-              To be a trusted technology partner recognized for delivering impactful digital
-              systems and products that shape the future of modern business and digital interaction.
+              To be a leading product company delivering tools that make everyday life
+              and business easier, smarter, and more productive.
             </p>
           </div>
         </div>

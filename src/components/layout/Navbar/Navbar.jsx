@@ -4,13 +4,10 @@ import { gsap } from 'gsap';
 import './Navbar.scss';
 
 const navLinks = [
-  { path: '/about', label: 'About' },
-  { path: '/services', label: 'Services' },
   { path: '/projects', label: 'Products' },
-  { path: '/contribute', label: 'Contribute' },
+  { path: '/about', label: 'About' },
+  { path: '/contact', label: 'Contact' },
 ];
-
-const AGENCY_URL = 'https://agency.3gensolutions.co.uk'; // External agency website
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -116,26 +113,18 @@ const Navbar = () => {
                 <span className="navbar__link-line" />
               </NavLink>
             ))}
-            <a
-              href={AGENCY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="navbar__link navbar__link--external"
-              data-cursor-hover
-            >
-              <span className="navbar__link-text">Our Agency</span>
-              <span className="navbar__link-line" />
-            </a>
           </div>
 
           <div className="navbar__actions">
-            <Link
-              to="/contact"
+            <a
+              href="https://app.awinfi.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="navbar__cta"
               data-cursor-hover
             >
-              <span>Contact Us</span>
-            </Link>
+              <span>Try Awinfi</span>
+            </a>
 
             <button
               className={`navbar__hamburger ${isMobileMenuOpen ? 'navbar__hamburger--open' : ''}`}
@@ -189,25 +178,17 @@ const Navbar = () => {
                 <span className="mobile-menu__link-text">{link.label}</span>
               </NavLink>
             ))}
-            <a
-              href={AGENCY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mobile-menu__link mobile-menu__link--external"
-              onClick={closeMobileMenu}
-            >
-              <span className="mobile-menu__link-number">05</span>
-              <span className="mobile-menu__link-text">Our Agency</span>
-            </a>
           </div>
 
-          <Link
-            to="/contact"
+          <a
+            href="https://app.awinfi.com/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mobile-menu__cta"
             onClick={closeMobileMenu}
           >
-            Contact Us
-          </Link>
+            Try Awinfi
+          </a>
 
           <div className="mobile-menu__footer">
             <div className="mobile-menu__social">

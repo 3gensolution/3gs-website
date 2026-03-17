@@ -8,26 +8,26 @@ import './HowWeWork.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const workPrinciples = [
+const products = [
   {
     id: 1,
-    text: 'We prioritize clarity and structure before execution',
+    text: 'Awinfi — Decentralized lending platform on Base blockchain',
   },
   {
     id: 2,
-    text: 'We design systems with scalability in mind',
+    text: 'Deposit crypto or cash and earn interest at your own rate',
   },
   {
     id: 3,
-    text: 'We focus on security, performance, and maintainability',
+    text: 'Non-custodial, cross-chain, and fully transparent',
   },
   {
     id: 4,
-    text: 'We collaborate closely to ensure alignment with business goals',
+    text: 'GuideAI — AI-powered insights and workflow automation for businesses',
   },
   {
     id: 5,
-    text: 'We build with long-term growth in focus',
+    text: 'Custom business support and smarter decision-making tools',
   },
 ];
 
@@ -88,7 +88,7 @@ const HowWeWork = () => {
         <div className="how-we-work__content">
           <span className="how-we-work__label">
             <span className="how-we-work__label-icon">◆</span>
-            Our Process
+            Our Products
           </span>
           <TextReveal
             as="h2"
@@ -97,15 +97,15 @@ const HowWeWork = () => {
             stagger={0.04}
             duration={0.6}
           >
-            How We Work
+            What We're Building
           </TextReveal>
           <ul className="how-we-work__list" ref={listRef}>
-            {workPrinciples.map((principle) => (
-              <li key={principle.id} className="how-we-work__item">
+            {products.map((product) => (
+              <li key={product.id} className="how-we-work__item">
                 <span className="how-we-work__item-number">
-                  {String(principle.id).padStart(2, '0')}
+                  {String(product.id).padStart(2, '0')}
                 </span>
-                <span className="how-we-work__item-text">{principle.text}</span>
+                <span className="how-we-work__item-text">{product.text}</span>
               </li>
             ))}
           </ul>
@@ -113,21 +113,23 @@ const HowWeWork = () => {
 
         <div className="how-we-work__aside" ref={asideRef}>
           <div className="how-we-work__card">
-            <h3 className="how-we-work__card-title">What Sets Us Apart</h3>
+            <h3 className="how-we-work__card-title">Awinfi — Live Now</h3>
             <p className="how-we-work__card-text">
-              At 3GS Solution, we don't just build software — we build systems designed
-              to grow, adapt, and perform reliably in real-world conditions. Our
-              product-driven mindset ensures every solution delivers measurable value,
-              not just functionality.
+              Turn crypto or cash into earning power. A decentralized lending platform
+              on Base — deposit, earn interest, or lend funds at your own rate.
+              Non-custodial, cross-chain, and fully transparent.
             </p>
+            <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="how-we-work__card-link" data-cursor-hover>
+              Try Awinfi →
+            </a>
           </div>
 
           <div className="how-we-work__cta">
             <h3 className="how-we-work__cta-title">
-              Partner With a Team That Builds for the Future
+              Experience Our Products Today
             </h3>
             <Button variant="primary" size="large" to="/contact" showArrow>
-              Start a Conversation
+              Join GuideAI Waitlist
             </Button>
           </div>
         </div>

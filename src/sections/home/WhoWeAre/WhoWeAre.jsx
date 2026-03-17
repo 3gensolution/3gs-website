@@ -41,23 +41,20 @@ const WhoWeAre = () => {
       <div className="who-we-are" ref={sectionRef}>
         <div className="who-we-are__statement" ref={textRef}>
           <span className="who-we-are__line">
-            3GS Solution is a{' '}
-            <em className="who-we-are__italic">technology company</em>
+            Powerful tools built with{' '}
+            <em className="who-we-are__italic">real users</em>
           </span>
           <span className="who-we-are__line">
-            focused on building{' '}
-            <em className="who-we-are__italic">digital products,</em>
+            and{' '}
+            <em className="who-we-are__italic">businesses</em>{' '}
+            in mind —
           </span>
           <span className="who-we-are__line">
-            platforms, and systems that
+            <em className="who-we-are__italic">intuitive,</em>{' '}
+            secure, and
           </span>
           <span className="who-we-are__line">
-            solve{' '}
-            <em className="who-we-are__italic">real-world challenges</em>{' '}
-            and
-          </span>
-          <span className="who-we-are__line">
-            <em className="who-we-are__italic">scale with growth.</em>
+            <em className="who-we-are__italic">scalable.</em>
           </span>
         </div>
       </div>

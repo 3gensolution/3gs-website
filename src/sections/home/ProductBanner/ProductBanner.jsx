@@ -54,8 +54,8 @@ const ProductBanner = () => {
       <div className="product-banner" ref={sectionRef}>
         {/* Header */}
         <div className="product-banner__header" ref={headerRef}>
-          <span className="product-banner__label">Featured Product</span>
-          <h2 className="product-banner__title">Check out our latest product</h2>
+          <span className="product-banner__label">Our Products</span>
+          <h2 className="product-banner__title">Solutions built for people and businesses</h2>
         </div>
 
         {/* Product Card */}
@@ -74,8 +74,8 @@ const ProductBanner = () => {
             {/* Left: Image placeholder */}
             <div className="product-banner__image">
               <div className="product-banner__image-inner">
-                <span className="product-banner__image-icon">💎</span>
-                <span className="product-banner__image-text">AwinFi</span>
+                <span className="product-banner__image-icon">💰</span>
+                <span className="product-banner__image-text">Awinfi</span>
               </div>
             </div>
 
@@ -83,25 +83,29 @@ const ProductBanner = () => {
             <div className="product-banner__info">
               <span className="product-banner__tag">
                 <span className="product-banner__tag-dot" />
-                Launching Soon
+                Live
               </span>
 
               <h3 className="product-banner__name">
-                <span className="product-banner__name-highlight">AwinFi:</span>{' '}
+                <span className="product-banner__name-highlight">Awinfi:</span>{' '}
                 <span className="product-banner__name-tagline">
-                  Unlocking crypto liquidity for everyone.
+                  Turn crypto or cash into earning power.
                 </span>
               </h3>
 
               <p className="product-banner__description">
-                A digital lending platform that lets you deposit crypto assets and receive
-                fiat cash instantly. Bridging the gap between digital and traditional finance
-                with security and transparency at its core.
+                A decentralized lending platform on Base — deposit crypto or cash, earn interest,
+                or lend funds at your own rate. Non-custodial, cross-chain, and fully transparent.
               </p>
 
-              <span className="product-banner__cta">
-                Coming soon
-              </span>
+              <a
+                href="https://app.awinfi.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="product-banner__cta"
+              >
+                Use Awinfi →
+              </a>
             </div>
           </div>
         </div>

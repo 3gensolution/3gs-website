@@ -222,6 +222,19 @@ $hero-dot-color: $color-primary;
     }
   }
 
+  // CTA Buttons wrapper
+  &__cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+
+    @include md {
+      flex-direction: row;
+      align-items: center;
+      gap: $spacing-4;
+    }
+  }
+
   // CTA Link - Pill button
   &__cta-link {
     display: inline-flex;
@@ -253,6 +266,18 @@ $hero-dot-color: $color-primary;
 
       svg {
         transform: translateX(4px);
+      }
+    }
+
+    &--secondary {
+      border-color: rgba($hero-text-dark, 0.3);
+      color: rgba($hero-text-dark, 0.7);
+      font-weight: $font-weight-medium;
+
+      &:hover {
+        border-color: $hero-text-dark;
+        color: $hero-text-dark;
+        background: transparent;
       }
     }
   }

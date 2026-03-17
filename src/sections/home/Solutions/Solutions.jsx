@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 const solutions = [
   {
     id: 1,
-    title: 'Digital Products',
-    subtitle: 'BUILD WITH PURPOSE',
-    description: 'Secure, scalable applications from concept to deployment. We transform your ideas into powerful digital experiences that users love.',
+    title: 'For Individuals',
+    subtitle: 'DECENTRALIZED FINANCE',
+    description: 'Deposit crypto or cash, earn interest, or lend funds to others at your own rate. Awinfi puts you in control of your assets.',
     bgColor: '#FF6B35', // Orange
     textColor: '#FFFFFF',
     dotColor: '#0A0A0A', // Black dots
@@ -19,9 +19,9 @@ const solutions = [
   },
   {
     id: 2,
-    title: 'Platform Engineering',
-    subtitle: 'SCALE WITH CONFIDENCE',
-    description: 'Robust systems designed for growth and integration. We build the foundation that supports your business as it evolves.',
+    title: 'For Businesses',
+    subtitle: 'AI-POWERED TOOLS',
+    description: 'AI tips & insights, workflow automation, and custom business support. GuideAI helps you make smarter decisions — coming soon.',
     bgColor: '#0A0A0A', // Black
     textColor: '#FFFFFF',
     dotColor: '#FF6B35', // Orange dots
@@ -29,9 +29,9 @@ const solutions = [
   },
   {
     id: 3,
-    title: 'Tech Consulting',
-    subtitle: 'NAVIGATE COMPLEXITY',
-    description: 'Strategic guidance for modern technology adoption. We help you make informed decisions that drive meaningful results.',
+    title: 'How It Works',
+    subtitle: 'SIMPLE AS 1-2-3',
+    description: 'Learn what you need, sign up in minutes, and start using the product. Our tools are designed for fast onboarding and immediate value.',
     bgColor: '#FFFFFF', // White
     textColor: '#0A0A0A',
     dotColor: '#FF6B35', // Orange dots
@@ -39,9 +39,9 @@ const solutions = [
   },
   {
     id: 4,
-    title: 'Infrastructure',
-    subtitle: 'PERFORM AT SCALE',
-    description: 'Systems architected for performance and resilience. We design infrastructure that keeps your business running smoothly.',
+    title: 'Why Choose Us',
+    subtitle: 'PRODUCT FOCUSED',
+    description: 'Powerful tools built with real users and businesses in mind — intuitive, secure, and scalable. We focus on outcomes, not just features.',
     bgColor: '#1A1A1A', // Dark grey
     textColor: '#FFFFFF',
     dotColor: '#FF6B35', // Orange dots
@@ -142,12 +142,12 @@ const Solutions = () => {
       {/* Final CTA Panel */}
       <section className="solutions__cta-panel">
         <div className="solutions__cta-content">
-          <h2 className="solutions__cta-title">Ready to build something great?</h2>
+          <h2 className="solutions__cta-title">Ready to get started?</h2>
           <p className="solutions__cta-description">
-            Let's discuss how we can help transform your ideas into reality.
+            Explore our products and find the right solution for you.
           </p>
-          <Link to="/services" className="solutions__cta-link" data-cursor-hover>
-            <span>Explore all services</span>
+          <Link to="/projects" className="solutions__cta-link" data-cursor-hover>
+            <span>Explore our products</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>

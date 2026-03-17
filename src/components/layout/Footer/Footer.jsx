@@ -6,8 +6,6 @@ import './Footer.scss';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AGENCY_URL = 'https://agency.3gensolutions.co.uk'; // External agency website
-
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const footerRef = useRef(null);
@@ -16,14 +14,14 @@ const Footer = () => {
 
   const navLinksLeft = [
     { label: 'Home', path: '/' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Awinfi', path: '/projects' },
+    { label: 'GuideAI', path: '/projects' },
   ];
 
   const navLinksRight = [
     { label: 'About', path: '/about' },
-    { label: 'Services', path: '/services' },
-    { label: 'Careers', path: '/contribute' },
+    { label: 'Contact', path: '/contact' },
+    { label: 'Terms', path: '/terms' },
   ];
 
   useEffect(() => {
@@ -85,26 +83,15 @@ const Footer = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a
-                  href={AGENCY_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="footer__nav-link footer__nav-link--external"
-                  data-cursor-hover
-                >
-                  Our Agency
-                </a>
-              </li>
             </ul>
           </div>
 
           <div className="footer__ctas">
+            <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="footer__cta footer__cta--filled" data-cursor-hover>
+              Try Awinfi
+            </a>
             <Link to="/contact" className="footer__cta footer__cta--outline" data-cursor-hover>
-              Book a call
-            </Link>
-            <Link to="/contribute" className="footer__cta footer__cta--filled" data-cursor-hover>
-              Join our team
+              GuideAI Waitlist
             </Link>
           </div>
         </div>
@@ -114,7 +101,7 @@ const Footer = () => {
 
         {/* Large Headline */}
         <h2 className="footer__headline" ref={headlineRef}>
-          Let's build the next big thing together.
+          Smarter tools for people and businesses.
         </h2>
 
         {/* Contact & Social Buttons */}

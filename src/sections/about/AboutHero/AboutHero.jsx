@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { Link } from 'react-router-dom';
 import TextReveal from '../../../components/common/TextReveal';
 import './AboutHero.scss';
 
@@ -84,8 +85,21 @@ const AboutHero = () => {
           delay={0.6}
           trigger={false}
         >
-          On a mission to build reliable digital solutions that power businesses and communities.
+          We build products that empower people and businesses.
         </TextReveal>
+
+        <p className="about-hero__subtext">
+          From decentralized finance to AI-driven business tools, 3GS creates solutions that solve real problems and scale for the future.
+        </p>
+
+        <div className="about-hero__ctas">
+          <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="about-hero__cta about-hero__cta--primary" data-cursor-hover>
+            Try Awinfi
+          </a>
+          <Link to="/contact" className="about-hero__cta about-hero__cta--secondary" data-cursor-hover>
+            Join GuideAI Waitlist
+          </Link>
+        </div>
       </div>
     </section>
   );

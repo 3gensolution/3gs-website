@@ -1,4 +1,5 @@
 @use '../../../styles/utils' as *;
+@use 'sass:color';
 
 // About Hero - White background with black/orange text (Finiam style)
 $about-bg: #FFFFFF;
@@ -81,11 +82,69 @@ $about-accent: $color-primary; // Orange #FF6B35
       font-size: clamp(3rem, 6vw, 4.5rem);
     }
 
-    // Style specific words with italic and orange
-    .word:nth-child(5),
-    .word:nth-child(6) {
+    // Style "empower people and businesses" in italic and orange
+    .word:nth-child(n+5) {
       font-style: italic;
       color: $about-accent;
+    }
+  }
+
+  &__subtext {
+    font-size: $font-size-base;
+    color: rgba($about-text-dark, 0.7);
+    line-height: $line-height-relaxed;
+    max-width: 560px;
+    margin-top: $spacing-6;
+
+    @include md {
+      font-size: $font-size-lg;
+      margin-top: $spacing-8;
+    }
+  }
+
+  &__ctas {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+    margin-top: $spacing-8;
+
+    @include md {
+      flex-direction: row;
+      align-items: center;
+      gap: $spacing-4;
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    text-decoration: none;
+    padding: $spacing-4 $spacing-8;
+    border-radius: $radius-full;
+    transition: all 0.3s $ease-out-expo;
+
+    &--primary {
+      background: $about-accent;
+      color: #FFFFFF;
+      border: 2px solid $about-accent;
+
+      &:hover {
+        background: color.adjust($about-accent, $lightness: -8%);
+        border-color: color.adjust($about-accent, $lightness: -8%);
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: $about-text-dark;
+      border: 2px solid rgba($about-text-dark, 0.3);
+
+      &:hover {
+        border-color: $about-text-dark;
+      }
     }
   }
 }

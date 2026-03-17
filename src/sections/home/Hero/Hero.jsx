@@ -8,31 +8,10 @@ import './Hero.scss';
 const slides = [
   {
     id: 1,
-    question: 'What problem are we solving?',
-    answer: 'Make your product easy & delightful.',
-    description: 'Deliver a product that users love — one so intuitive and useful they effortlessly adopt it and tell others. Focus on value, simplicity, and rapid iteration.',
+    question: 'Build smarter digital products',
+    answer: 'for people and businesses.',
+    description: 'We create solutions that empower individuals and enterprises — from decentralized finance to AI tools for growth.',
     variant: 'scattered',
-  },
-  {
-    id: 2,
-    question: 'Why choose our product?',
-    answer: 'Experience value instantly.',
-    description: 'Give users a fast path to the “aha!” moment — where they immediately see the benefit. Success comes from letting the product speak for itself and drive growth.',
-    variant: 'horizontal',
-  },
-  {
-    id: 3,
-    question: 'How do we grow?',
-    answer: 'Let the product lead.',
-    description: 'Product‑led growth helps us scale organically — happy users share, adopt more features, and reduce reliance on costly sales outreach.',
-    variant: 'grid',
-  },
-  {
-    id: 4,
-    question: 'Built for whom?',
-    answer: 'People who build and succeed.',
-    description: 'Our tools empower creators, builders, and teams to solve real problems — from first use to long‑term success, with intuitive design and powerful outcomes.',
-    variant: 'diagonal',
   },
 ];
 
@@ -234,12 +213,17 @@ const Hero = () => {
             <p className="hero__description">
               {currentSlideData.description}
             </p>
-            <Link to="/contact" className="hero__cta-link" data-cursor-hover>
-              <span>Get in touch</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </Link>
+            <div className="hero__cta-buttons">
+              <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="hero__cta-link" data-cursor-hover>
+                <span>Try Awinfi</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <Link to="/contact" className="hero__cta-link hero__cta-link--secondary" data-cursor-hover>
+                <span>Get early access to GuideAI</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

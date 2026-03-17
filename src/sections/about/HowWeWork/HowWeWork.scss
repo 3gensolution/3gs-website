@@ -128,6 +128,20 @@
         font-size: $font-size-lg;
       }
     }
+
+    &-link {
+      display: inline-block;
+      font-size: $font-size-base;
+      font-weight: $font-weight-semibold;
+      color: $color-primary;
+      text-decoration: none;
+      margin-top: $spacing-4;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
   }
 
   &__cta {

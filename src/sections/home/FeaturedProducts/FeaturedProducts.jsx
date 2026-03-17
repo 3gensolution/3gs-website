@@ -9,17 +9,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    id: 'wiremi',
-    name: 'Wiremi',
-    tagline: 'Financial tools built for the modern world.',
+    id: 'awinfi',
+    name: 'Awinfi',
+    tagline: 'Turn crypto or cash into earning power.',
     status: 'live',
     colorScheme: 'lavender',
   },
   {
-    id: 'genius-home',
-    name: 'Genius Home',
-    tagline: 'Education reimagined through technology.',
-    status: 'live',
+    id: 'guideai',
+    name: 'GuideAI',
+    tagline: 'AI-powered business tools for smarter decision-making.',
+    status: 'coming-soon',
     colorScheme: 'mint',
   },
 ];
@@ -66,7 +66,7 @@ const FeaturedProducts = () => {
             stagger={0.02}
             duration={0.4}
           >
-            This isn't our first build.
+            Products we're building.
           </TextReveal>
           <TextReveal
             as="h2"
@@ -75,7 +75,7 @@ const FeaturedProducts = () => {
             stagger={0.02}
             duration={0.4}
           >
-            Projects we've built for clients:
+            Tools for individuals and businesses:
           </TextReveal>
         </div>
 
