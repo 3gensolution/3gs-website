@@ -8,9 +8,10 @@ import './Hero.scss';
 const slides = [
   {
     id: 1,
-    question: 'Build smarter digital products',
-    answer: 'for people and businesses.',
-    description: 'We create solutions that empower individuals and enterprises — from decentralized finance to AI tools for growth.',
+    eyebrow: 'Now live · 3Guide (formerly GuideAI)',
+    question: 'Build products that make',
+    answer: 'progress easier.',
+    description: '3GS Solution builds products and services for people and businesses. Our newest product, 3Guide, helps software companies guide users, answer questions, and complete workflows inside the products they already use.',
     variant: 'scattered',
   },
 ];
@@ -180,6 +181,7 @@ const Hero = () => {
           {/* Statement Section */}
           <div className="hero__statement">
             <div className="hero__question">
+              <span className="hero__eyebrow">{currentSlideData.eyebrow}</span>
               <TextReveal
                 as="h1"
                 className="hero__question-text"
@@ -214,14 +216,14 @@ const Hero = () => {
               {currentSlideData.description}
             </p>
             <div className="hero__cta-buttons">
-              <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="hero__cta-link" data-cursor-hover>
-                <span>Try Awinfi</span>
+              <a href="https://www.3guideai.com/" target="_blank" rel="noopener noreferrer" className="hero__cta-link" data-cursor-hover>
+                <span>Explore 3Guide</span>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </a>
-              <Link to="/contact" className="hero__cta-link hero__cta-link--secondary" data-cursor-hover>
-                <span>Get early access to GuideAI</span>
+              <Link to="/projects" className="hero__cta-link hero__cta-link--secondary" data-cursor-hover>
+                <span>See our products</span>
               </Link>
             </div>
           </div>

@@ -11,21 +11,20 @@ const products = [
     name: 'AwinFi',
     tagline: 'Decentralized Crypto Lending',
     description: 'Borrow against your crypto assets or earn yield by providing liquidity. No intermediaries, no credit checks.',
-    status: 'In Development',
-    url: 'https://awinfi.com',
+    status: 'Live',
+    url: 'https://app.awinfi.com/',
     image: '/awinfi-preview.png',
     bgColor: '#0A1628',
   },
   {
-    id: 'coming-soon',
-    name: 'More Coming',
-    tagline: 'Future Products',
-    description: 'We\'re constantly building new digital products. Stay tuned for exciting launches.',
-    status: 'Coming Soon',
-    url: '/contact',
+    id: '3guide',
+    name: '3Guide',
+    tagline: 'AI-first product adoption platform',
+    description: 'Help users understand and complete workflows inside your software, while your team sees where people get stuck.',
+    status: 'Live',
+    url: 'https://www.3guideai.com/',
     image: null,
-    bgColor: '#2D2D2D',
-    isPlaceholder: true,
+    bgColor: '#0A0A0A',
   },
 ];
 
@@ -139,7 +138,7 @@ const ProjectsContent = () => {
                 <span className="projects-content__tooltip-tagline">{product.tagline}</span>
                 <p className="projects-content__tooltip-description">{product.description}</p>
                 <span className="projects-content__tooltip-cta">
-                  {product.isPlaceholder ? 'Get in Touch' : 'Visit Site'}
+                  Visit Site
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>

@@ -23,11 +23,11 @@ const products = [
   },
   {
     id: 4,
-    text: 'GuideAI — AI-powered insights and workflow automation for businesses',
+    text: '3Guide — AI-first product adoption for software teams',
   },
   {
     id: 5,
-    text: 'Custom business support and smarter decision-making tools',
+    text: 'Guide users, answer questions, complete workflows, and see friction',
   },
 ];
 
@@ -128,8 +128,8 @@ const HowWeWork = () => {
             <h3 className="how-we-work__cta-title">
               Experience Our Products Today
             </h3>
-            <Button variant="primary" size="large" to="/contact" showArrow>
-              Join GuideAI Waitlist
+            <Button variant="primary" size="large" href="https://www.3guideai.com/" external showArrow>
+              Explore 3Guide
             </Button>
           </div>
         </div>

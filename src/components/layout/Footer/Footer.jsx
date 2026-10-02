@@ -15,7 +15,7 @@ const Footer = () => {
   const navLinksLeft = [
     { label: 'Home', path: '/' },
     { label: 'Awinfi', path: '/projects' },
-    { label: 'GuideAI', path: '/projects' },
+    { label: '3Guide', path: '/projects' },
   ];
 
   const navLinksRight = [
@@ -90,9 +90,9 @@ const Footer = () => {
             <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="footer__cta footer__cta--filled" data-cursor-hover>
               Try Awinfi
             </a>
-            <Link to="/contact" className="footer__cta footer__cta--outline" data-cursor-hover>
-              GuideAI Waitlist
-            </Link>
+            <a href="https://www.3guideai.com/" target="_blank" rel="noopener noreferrer" className="footer__cta footer__cta--outline" data-cursor-hover>
+              Explore 3Guide
+            </a>
           </div>
         </div>
 

@@ -20,8 +20,8 @@ const solutions = [
   {
     id: 2,
     title: 'For Businesses',
-    subtitle: 'AI-POWERED TOOLS',
-    description: 'AI tips & insights, workflow automation, and custom business support. GuideAI helps you make smarter decisions — coming soon.',
+    subtitle: 'PRODUCT ADOPTION',
+    description: '3Guide helps software companies get users to value faster with in-app guidance, AI answers, workflow assistance, and friction analytics.',
     bgColor: '#0A0A0A', // Black
     textColor: '#FFFFFF',
     dotColor: '#FF6B35', // Orange dots

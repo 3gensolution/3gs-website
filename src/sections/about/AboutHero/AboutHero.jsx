@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Link } from 'react-router-dom';
 import TextReveal from '../../../components/common/TextReveal';
 import './AboutHero.scss';
 
@@ -89,16 +88,16 @@ const AboutHero = () => {
         </TextReveal>
 
         <p className="about-hero__subtext">
-          From decentralized finance to AI-driven business tools, 3GS creates solutions that solve real problems and scale for the future.
+          From financial tools for individuals to 3Guide for software teams, 3GS creates products and services that solve real problems and help people move forward.
         </p>
 
         <div className="about-hero__ctas">
-          <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="about-hero__cta about-hero__cta--primary" data-cursor-hover>
+          <a href="https://www.3guideai.com/" target="_blank" rel="noopener noreferrer" className="about-hero__cta about-hero__cta--primary" data-cursor-hover>
+            Explore 3Guide
+          </a>
+          <a href="https://app.awinfi.com/" target="_blank" rel="noopener noreferrer" className="about-hero__cta about-hero__cta--secondary" data-cursor-hover>
             Try Awinfi
           </a>
-          <Link to="/contact" className="about-hero__cta about-hero__cta--secondary" data-cursor-hover>
-            Join GuideAI Waitlist
-          </Link>
         </div>
       </div>
     </section>

@@ -117,13 +117,13 @@ const Navbar = () => {
 
           <div className="navbar__actions">
             <a
-              href="https://app.awinfi.com/"
+              href="https://www.3guideai.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="navbar__cta"
               data-cursor-hover
             >
-              <span>Try Awinfi</span>
+              <span>Explore 3Guide</span>
             </a>
 
             <button
@@ -181,13 +181,13 @@ const Navbar = () => {
           </div>
 
           <a
-            href="https://app.awinfi.com/"
+            href="https://www.3guideai.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="mobile-menu__cta"
             onClick={closeMobileMenu}
           >
-            Try Awinfi
+            Explore 3Guide
           </a>
 
           <div className="mobile-menu__footer">

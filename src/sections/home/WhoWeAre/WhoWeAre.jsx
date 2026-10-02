@@ -41,20 +41,20 @@ const WhoWeAre = () => {
       <div className="who-we-are" ref={sectionRef}>
         <div className="who-we-are__statement" ref={textRef}>
           <span className="who-we-are__line">
-            Powerful tools built with{' '}
-            <em className="who-we-are__italic">real users</em>
+            We build products and services for{' '}
+            <em className="who-we-are__italic">people</em>
           </span>
           <span className="who-we-are__line">
             and{' '}
             <em className="who-we-are__italic">businesses</em>{' '}
-            in mind —
+            to move forward.
+          </span>
+          <span className="who-we-are__line">
+            Thoughtful tools for real-world needs —
           </span>
           <span className="who-we-are__line">
             <em className="who-we-are__italic">intuitive,</em>{' '}
-            secure, and
-          </span>
-          <span className="who-we-are__line">
-            <em className="who-we-are__italic">scalable.</em>
+            secure, and scalable.
           </span>
         </div>
       </div>

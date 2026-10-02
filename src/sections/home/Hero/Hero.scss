@@ -167,6 +167,27 @@ $hero-dot-color: $color-primary;
   &__question {
     flex: 1;
 
+    .hero__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-2;
+      margin-bottom: $spacing-6;
+      color: $hero-accent;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-semibold;
+      letter-spacing: $letter-spacing-wider;
+      text-transform: uppercase;
+
+      &::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: $hero-accent;
+        animation: pulse 2s ease-in-out infinite;
+      }
+    }
+
     &-text {
       font-size: clamp(2.5rem, 9vw, 5.5rem);
       font-weight: $font-weight-normal;

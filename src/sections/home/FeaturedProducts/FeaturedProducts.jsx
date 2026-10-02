@@ -14,13 +14,15 @@ const projects = [
     tagline: 'Turn crypto or cash into earning power.',
     status: 'live',
     colorScheme: 'lavender',
+    url: 'https://app.awinfi.com/',
   },
   {
-    id: 'guideai',
-    name: 'GuideAI',
-    tagline: 'AI-powered business tools for smarter decision-making.',
-    status: 'coming-soon',
+    id: '3guide',
+    name: '3Guide',
+    tagline: 'Guide users, answer questions, and complete workflows inside your product.',
+    status: 'live',
     colorScheme: 'mint',
+    url: 'https://www.3guideai.com/',
   },
 ];
 
@@ -82,10 +84,14 @@ const FeaturedProducts = () => {
         {/* Project Cards */}
         <div className="featured-products__grid">
           {projects.map((project, index) => (
-            <div
+            <a
               key={project.id}
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
               ref={el => cardsRef.current[index] = el}
               className={`featured-products__card featured-products__card--${project.colorScheme}`}
+              data-cursor-hover
             >
               {/* Geometric shapes */}
               <div className="featured-products__shapes">
@@ -103,11 +109,11 @@ const FeaturedProducts = () => {
                 {/* Bottom: Status Tag */}
                 <div className="featured-products__card-bottom">
                   <span className={`featured-products__status featured-products__status--${project.status}`}>
-                    {project.status === 'coming-soon' ? 'Coming soon' : 'Live'}
+                    {project.status === 'live' ? 'Live' : project.status}
                   </span>
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </div>
